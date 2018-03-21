@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h3>{{ error }}</h3>
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form|linebreaks }}
+    <input type="submit" value="Zarejestruj się">
+  </form>
+
+{% endblock content %}

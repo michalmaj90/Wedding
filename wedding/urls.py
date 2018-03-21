@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from guests.views import HelloView
+from guests.views import HelloView, CoupleLoginView, GuestLoginView, GuestRegisterView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^hello/', HelloView.as_view(), name='hello')
+    url(r'^hello/', HelloView.as_view(), name='hello'),
+    url(r'^couple_login/', CoupleLoginView.as_view(), name='couple-login'),
+    url(r'^guest_login/', GuestLoginView.as_view(), name='guest-login'),
+    url(r'^guest_register/', GuestRegisterView.as_view(), name='guest-register')
 ]
