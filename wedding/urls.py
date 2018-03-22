@@ -15,12 +15,17 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from guests.views import HelloView, CoupleLoginView, GuestLoginView, GuestRegisterView
+from guests.views import HelloView, CoupleLoginView, GuestLoginView, GuestRegisterView, CouplePageView, CoupleLogoutView, GuestLogoutView, SpousePageView, SpouseAddInfoView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^hello/', HelloView.as_view(), name='hello'),
     url(r'^couple_login/', CoupleLoginView.as_view(), name='couple-login'),
     url(r'^guest_login/', GuestLoginView.as_view(), name='guest-login'),
-    url(r'^guest_register/', GuestRegisterView.as_view(), name='guest-register')
+    url(r'^guest_register/', GuestRegisterView.as_view(), name='guest-register'),
+    url(r'^couple_page/(?P<spouse_id>(\d)+)$', CouplePageView.as_view(), name='couple-page'),
+    url(r'^couple_logut/', CoupleLogoutView.as_view(), name='couple-logout'),
+    url(r'^guest_logout/', GuestLogoutView.as_view(), name='guest-logout'),
+    url(r'^spouse_page/(?P<spouse_id>(\d)+)$', SpousePageView.as_view()),
+    url(r'^spouse_add_info/(?P<spouse_id>(\d)+)$', SpouseAddInfoView.as_view(), name='spouse-add-info')
 ]

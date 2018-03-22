@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 FOOD = (
     (1, 'Normalne'),
@@ -7,6 +8,7 @@ FOOD = (
 # Create your models here.
 
 class WeddingCouple(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, default=None)
     first_name = models.CharField(max_length=64)
     last_name = models.CharField(max_length=64)
     description = models.CharField(max_length=300)

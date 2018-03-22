@@ -2,9 +2,9 @@ from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
+from django.contrib.auth import authenticate, login, logout
 from guests.models import WeddingCouple, WeddingGuest, AccompanyingPerson, WeddingInfo
-from guests.forms import CoupleLoginForm, GuestLoginForm, GuestRegisterForm
+from guests.forms import CoupleLoginForm, GuestLoginForm, GuestRegisterForm, SpouseAddInfoForm
 
 # Create your views here.
 
@@ -28,12 +28,16 @@ class CoupleLoginView(View):
             if user_aut is not None:
                 user = User.objects.get(username=form.cleaned_data['username'])
                 if user.is_superuser:
-                    return HttpResponseRedirect("/couple_page")
+                    login(request, user)
+                    return HttpResponseRedirect("/couple_page/{}".format(user.id))
                 else:
                     return HttpResponse("Nie jesteś z pary młodej!")
             else:
-                return HttpResponse("Taki użytkownik nie istnieje!")
-
+                ctx = {
+                    'form': form,
+                    'error': "Taki użytkownik nie istnieje!"
+                }
+                return render(request, 'couple_login.html', ctx)
 
 class GuestLoginView(View):
     def get(self, request):
@@ -48,6 +52,7 @@ class GuestLoginView(View):
         if form.is_valid():
             user_aut = authenticate(username=form.cleaned_data['username'], password=form.cleaned_data['password'])
             if user_aut is not None:
+                login(request, user_aut)
                 return HttpResponseRedirect('/guest_page/{}'.format(user_aut.id))
             else:
                 ctx = {
@@ -87,4 +92,45 @@ class GuestRegisterView(View):
                     return render(request, 'guest_register.html', ctx)
                 else:
                     user = User.objects.create_user(username=username, password=password1)
+                    login(request, user)
                     return HttpResponseRedirect('/guest_page/{}'.format(user.id))
+
+
+class CouplePageView(View):
+    def get(self, request, spouse_id):
+        user = User.objects.get(pk=spouse_id)
+        ctx = {
+            'user': user,
+        }
+        return render(request, 'couple_page.html', ctx)
+
+class CoupleLogoutView(View):
+    def get(self, request):
+        logout(request)
+        return HttpResponseRedirect('/couple_login')
+
+
+class GuestLogoutView(View):
+    def get(self, request):
+        logout(request)
+        return HttpResponseRedirect('/guest_login')
+
+
+class SpousePageView(View):
+    def get(self, request, spouse_id):
+        user = User.objects.get(pk=spouse_id)
+        spouse = WeddingCouple.objects.filter(user=user)
+        ctx = {
+            'user': user,
+            'spouse': spouse,
+            }
+        return render(request, 'spouse_page.html', ctx)
+
+
+class SpouseAddInfoView(View):
+    def get(self, request, spouse_id):
+        form = SpouseAddInfoForm()
+        ctx = {
+            'form': form,
+        }
+        return render(request, 'spouse_add_info.html', ctx)

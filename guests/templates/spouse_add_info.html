@@ -1,10 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h3>{{ error }}</h3>
-  <form action="" method="post">
+  <form action="index.html" method="post">
     {% csrf_token %}
     {{ form|linebreaks }}
-    <input type="submit" value="Zaloguj się">
+    <input type="submit" value="Dodaj informacje">
   </form>
 
 {% endblock content %}
