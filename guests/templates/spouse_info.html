@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h3>Twoje dane</h3>
+    <p>Imię: {{ spouse.first_name }}</p>
+    <p>Nazwisko: {{ spouse.last_name }}</p>
+    <p>Twój opis: {{ spouse.description }}</p>
+    <p>Email: {{ spouse.email }}</p>
+    <p>Telefon: {{ spouse.phone }}</p>
+    <a href="/couple_page/{{ user.id }}">Wróć do strony głównej</a></br>
+    <a href="/spouse_edit_info/{{ user.id }}">Edytuj dane</a>
+{% endblock content %}

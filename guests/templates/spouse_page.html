@@ -2,7 +2,14 @@
 {% block content %}
 
   {% if spouse %}
-    <p>Witaj {{ spouse }}</p>
+    {% for person in spouse %}
+    <a href="/spouse_info/{{ user.id }}">
+      <button type="button" name="button">TWOJE DANE</button>
+    </a>
+    <a href="/spouse_edit_info/{{ user.id }}">
+      <button type="button" name="button">EDYTUJ DANE</button>
+    </a>
+    {% endfor %}
   {% else %}
     <h3>Brak danych do wyświetlenia!</h3>
     <a href="/spouse_add_info/{{ user.id }}">

@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
+
   <form action="" method="post">
     {% csrf_token %}
     {{ form|linebreaks }}
-    <input type="submit" value="Dodaj informacje">
+    <input type="submit" value="Dodaj dane">
   </form>
-
+  <a href="/wedding_page">Wróć na stronę główną</a>
 {% endblock content %}

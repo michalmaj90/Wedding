@@ -3,7 +3,8 @@
   <form action="" method="post">
     {% csrf_token %}
     {{ form|linebreaks }}
-    <input type="submit" value="Dodaj informacje">
+    <input type="submit" value="Zmień dane">
   </form>
+  <a href="/couple_page/{{ user.id }}">Wróć do strony głównej</a>
 
 {% endblock content %}

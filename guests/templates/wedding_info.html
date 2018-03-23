@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  {% for info in infos %}
+    <p>Nazwa kościoła: {{ info.church_name }}</p>
+    <p>Adres kościoła: {{ info.church_address }}</p>
+    <a href="{{ info.church_view }}">Zobacz kościół</a></br>
+    <p>Nazwa sali: {{ info.premises_name }}</p>
+    <p>Adres sali: {{ info.premises_address }}</p>
+    <a href="{{ info.premises_view }}">Zobacz salę</a>
+  {% endfor %}
+  </br>
+  </br>
+  <a href="/wedding_page">Wróć do strony z salami</a>
+{% endblock content%}

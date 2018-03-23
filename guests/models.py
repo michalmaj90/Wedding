@@ -9,10 +9,10 @@ FOOD = (
 
 class WeddingCouple(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True, default=None)
-    first_name = models.CharField(max_length=64)
-    last_name = models.CharField(max_length=64)
-    description = models.CharField(max_length=300)
-    email = models.CharField(max_length=64)
+    first_name = models.CharField(max_length=64, null=True)
+    last_name = models.CharField(max_length=64, null=True)
+    description = models.CharField(max_length=300, null=True)
+    email = models.EmailField(max_length=64, null=True)
     phone = models.IntegerField()
 
 class WeddingGuest(models.Model):
