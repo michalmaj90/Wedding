@@ -2,12 +2,12 @@
 {% block content %}
 
   {% if infos %}
-    <h3>{{ info }}</h3>
+    <h3>{{ text }}</h3>
+    <a href="/wedding_add_info">
+      <button type="button" name="button">DODAJ DANE</button>
+    </a>
     <a href="/wedding_info">
       <button type="button" name="button">ZOBACZ DANE</button>
-    </a>
-    <a href="/wedding_edit_info">
-      <button type="button" name="button">EDYTUJ DANE</button>
     </a>
   {% else %}
     <h3>Brak danych o weselu!</h3>
@@ -15,5 +15,6 @@
       <button type="button" name="button">DODAJ DANE</button>
     </a>
   {% endif %}
+  <p><a href="/couple_page">Wróć do strony głównej</a></p>
 
 {% endblock content %}

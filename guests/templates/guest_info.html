@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% if guests %}
+    {% for guest in guests %}
+    <p>Imię: {{ guest.first_name }}</p>
+    <p>Nazwisko: {{ guest.last_name }}</p>
+    <p>Email: {{ guest.email }}</p>
+    <p>Telefon: {{ guest.phone }}</p>
+    <p>Wegetarianin: {{ guest.food }}</p>
+    {% endfor %}
+  {% else %}
+    <h3>Brak danych do wyświetlenia!</h3>
+    <a href="/guest_add_info">
+      <button type="button" name="button">DODAJ DANE</button>
+    </a>
+  {% endif %}
+  <a href="/guest_page/{{ user.id }}"></a>
+
+{% endblock content %}

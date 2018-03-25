@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h3>Twoje dane</h3>
+  <h3>{{ text }}</h3>
+  <h3>Wasze dane</h3>
+  {% for spouse in spouses %}
     <p>Imię: {{ spouse.first_name }}</p>
     <p>Nazwisko: {{ spouse.last_name }}</p>
     <p>Twój opis: {{ spouse.description }}</p>
     <p>Email: {{ spouse.email }}</p>
     <p>Telefon: {{ spouse.phone }}</p>
-    <a href="/couple_page/{{ user.id }}">Wróć do strony głównej</a></br>
-    <a href="/spouse_edit_info/{{ user.id }}">Edytuj dane</a>
+    <a href="/spouse_edit_info/{{ spouse.id }}">Edytuj dane</a>
+    <a href="/spouse_delete/{{ spouse.id }}">Usuń małżonka</a><br><br>
+  {% endfor %}
+    <p><a href="/couple_page">Wróć do strony głównej</a></p>
 {% endblock content %}

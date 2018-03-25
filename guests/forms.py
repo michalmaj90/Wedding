@@ -35,3 +35,11 @@ class AddWeddingInfoForm(forms.Form):
     premises_name = forms.CharField()
     premises_address = forms.CharField()
     premises_view = forms.CharField(widget=forms.Textarea)
+
+class EditWeddingInfoForm(forms.Form):
+    church_name = forms.CharField()
+    church_address = forms.CharField()
+    church_view = forms.CharField(widget=forms.Textarea)
+    premises_name = forms.CharField()
+    premises_address = forms.CharField()
+    premises_view = forms.CharField(widget=forms.Textarea)

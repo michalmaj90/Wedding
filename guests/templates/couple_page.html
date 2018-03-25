@@ -1,13 +1,13 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h3>Witaj {{ user.username }}!!</h3>
-  <a href="/spouse_page/1">
-    <button type="button" name="button">TWOJE DANE</button>
+  <h3>Witajcie młodzi!!</h3>
+  <a href="/spouse_page">
+    <button type="button" name="button">WASZE DANE</button>
   </a>
   <a href="/wedding_page">
     <button type="button" name="button">DANE WESELA</button>
   </a>
-  <a href="#">
+  <a href="/wedding_guests">
     <button type="button" name="button">GOŚCIE WESELNI</button>
   </a>
   <p><a href="{% url 'couple-logout' %}">Wyloguj się</a></p>

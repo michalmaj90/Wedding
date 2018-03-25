@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h3>Witaj {{ guest.username }}</h3>
+  <a href="/guest_info/{{ guest.id }}">
+    <button type="button" name="button">TWOJE DANE</button>
+  </a>
+  <a href="/couple_info">
+    <button type="button" name="button">DANE PARY MŁODEJ</button>
+  </a>
+  <a href="guest_wedding_info">
+    <button type="button" name="button">DANE WESELA</button>
+  </a>
+  <p><a href="/guest_logout">Wyloguj się</a></p>
+
+{% endblock content %}
