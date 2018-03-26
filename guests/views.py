@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from guests.models import WeddingCouple, WeddingGuest, AccompanyingPerson, WeddingInfo
-from guests.forms import CoupleLoginForm, GuestLoginForm, GuestRegisterForm, SpouseAddInfoForm, SpouseEditInfoForm, AddWeddingInfoForm, EditWeddingInfoForm
+from guests.forms import CoupleLoginForm, GuestLoginForm, GuestRegisterForm, GuestAddInfoForm, SpouseAddInfoForm, SpouseEditInfoForm, AddWeddingInfoForm, EditWeddingInfoForm
 
 # Create your views here.
 
@@ -97,6 +97,7 @@ class GuestRegisterView(View):
                 else:
                     user = User.objects.create_user(username=username, password=password1)
                     login(request, user)
+                    WeddingGuest.objects.create(user=user, first_name="", last_name="", email="", phone=None, food=None)
                     return HttpResponseRedirect('/guest_page/{}'.format(user.id))
 
 
@@ -284,17 +285,57 @@ class WeddingDeleteView(View):
 class GuestPageView(View):
     def get(self, request, guest_id):
         user = User.objects.get(pk=guest_id)
-        guests = WeddingGuest.objects.all()
+        guest = WeddingGuest.objects.get(user=user)
         ctx = {
-            'guests': guests,
-            'user_id': user.id,
+            'guest': guest,
+            'user': user,
         }
         return render(request, 'guest_page.html', ctx)
 
 class GuestInfoView(View):
     def get(self, request, guest_id):
-        guests = WeddingGuest.objects.all()
+        user = User.objects.get(pk=guest_id)
+        guest = WeddingGuest.objects.get(user=user)
         ctx = {
-            'guests': guests,
+            'guest': guest,
+            'user': user,
         }
         return render(request, 'guest_info.html', ctx)
+
+class GuestAddInfoView(View):
+    def get(self, request, guest_id):
+        form = GuestAddInfoForm()
+        ctx = {
+            'form': form,
+            'guest': guest_id,
+        }
+        return render(request, 'guest_add_info.html', ctx)
+
+    def post(self, request, guest_id):
+        form = GuestAddInfoForm(request.POST)
+        user = User.objects.get(pk=guest_id)
+        guest = WeddingGuest.objects.get(user=user)
+        if form.is_valid():
+            first_name = form.cleaned_data['first_name']
+            last_name = form.cleaned_data['last_name']
+            email = form.cleaned_data['email']
+            phone = form.cleaned_data['phone']
+            food = form.cleaned_data['food']
+            guest.first_name = first_name
+            guest.last_name = last_name
+            guest.email = email
+            guest.phone = phone
+            guest.food = food
+            guest.save()
+            return HttpResponseRedirect('/guest_info/{}'.format(user.id))
+
+class GuestDeleteInfoView(View):
+    def get(self, request, guest_id):
+        guest = WeddingGuest.objects.get(pk=guest_id)
+        guest.first_name = ""
+        guest.last_name = ""
+        guest.email = ""
+        guest.phone = None
+        guest.Food = None
+        guest.save()
+        return HttpResponseRedirect('/guest_info/{}'.format(user.id))

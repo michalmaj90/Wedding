@@ -1,5 +1,6 @@
 from django import forms
 from django.forms import ModelForm
+from guests.models import FOOD
 
 class CoupleLoginForm(forms.Form):
     username = forms.CharField()
@@ -13,6 +14,13 @@ class GuestRegisterForm(forms.Form):
     username = forms.CharField()
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
+
+class GuestAddInfoForm(forms.Form):
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    email = forms.EmailField()
+    phone = forms.IntegerField()
+    food = forms.IntegerField(widget=forms.Select(choices=FOOD))
 
 class SpouseAddInfoForm(forms.Form):
     first_name = forms.CharField()

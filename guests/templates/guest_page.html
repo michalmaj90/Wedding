@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h3>Witaj {{ guest.username }}</h3>
+  <h3>Witaj {{ user.username }}</h3>
   <a href="/guest_info/{{ guest.id }}">
     <button type="button" name="button">TWOJE DANE</button>
   </a>

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from guests.views import HelloView, CoupleLoginView, GuestLoginView, GuestRegisterView, CouplePageView, CoupleLogoutView, GuestLogoutView, SpousePageView, SpouseAddInfoView, SpouseInfoView, SpouseEditInfoView, SpouseDeleteView, WeddingPageView, AddWeddingInfoView, WeddingInfoView, EditWeddingInfoView, WeddingDeleteView, GuestPageView, GuestInfoView
+from guests.views import HelloView, CoupleLoginView, GuestLoginView, GuestRegisterView, CouplePageView, CoupleLogoutView, GuestLogoutView, SpousePageView, SpouseAddInfoView, SpouseInfoView, SpouseEditInfoView, SpouseDeleteView, WeddingPageView, AddWeddingInfoView, WeddingInfoView, EditWeddingInfoView, WeddingDeleteView, GuestPageView, GuestInfoView, GuestAddInfoView, GuestDeleteInfoView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -37,6 +37,8 @@ urlpatterns = [
     url(r'^wedding_edit_info/(?P<wedding_id>(\d)+)$', EditWeddingInfoView.as_view(), name='wedding-edit-info'),
     url(r'^wedding_delete/(?P<wedding_id>(\d)+)$', WeddingDeleteView.as_view(), name='wedding-delete'),
     url(r'^guest_page/(?P<guest_id>(\d)+)$', GuestPageView.as_view(), name='guest-page'),
-    url(r'^guest_info/(?P<guest_id>(\d)+)$', GuestInfoView.as_view(), name='guest-info')
+    url(r'^guest_info/(?P<guest_id>(\d)+)$', GuestInfoView.as_view(), name='guest-info'),
+    url(r'^guest_add_info/(?P<guest_id>(\d)+)$', GuestAddInfoView.as_view(), name='guest-add-info'),
+    url(r'^guest_delete_info/(?P<guest_id>(\d)+)$', GuestDeleteInfoView.as_view(), name='guest-delete-info')
 
 ]

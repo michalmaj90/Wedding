@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+  <form action="" method="post">
+    {% csrf_token %}
+    {{ form|linebreaks }}
+    <input type="submit" value="Dodaj dane">
+  </form>
+  <a href="/guest_page/{{ guest }}">Wróć do strony gościa</a>
+{% endblock content%}

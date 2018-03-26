@@ -15,11 +15,12 @@ class WeddingCouple(models.Model):
     phone = models.IntegerField(blank=True)
 
 class WeddingGuest(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
     first_name = models.CharField(max_length=64, blank=True)
     last_name = models.CharField(max_length=64, blank=True)
-    email = models.CharField(max_length=64, blank=True)
-    phone = models.IntegerField(blank=True)
-    food = models.IntegerField(choices=FOOD)
+    email = models.EmailField(max_length=64, blank=True)
+    phone = models.IntegerField(blank=True, null=True)
+    food = models.IntegerField(choices=FOOD, null=True)
 
 class AccompanyingPerson(models.Model):
     first_name = models.CharField(max_length=64, blank=True)
