@@ -7,10 +7,11 @@
     <p>Email: {{ guest.email }}</p>
     <p>Telefon: {{ guest.phone }}</p>
     <p>Opcja jedzenia: {{ guest.food }}</p>
-    <a href="/guest_edit_info/{{ guest.id }}">Edytuj dane</a>
+    <a href="/guest_edit_info/{{ user.id }}">Edytuj dane</a>
+    <a href="/guest_delete_info/{{ user.id }}">Wyczyść dane</a>
   {% else %}
     <h3>Brak danych do wyświetlenia!</h3>
-    <a href="/guest_add_info/{{ guest.id }}">
+    <a href="/guest_add_info/{{ user.id }}">
       <button type="button" name="button">DODAJ DANE</button>
     </a>
   {% endif %}<br>

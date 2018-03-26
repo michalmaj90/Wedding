@@ -3,8 +3,8 @@ from django.views import View
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from guests.models import WeddingCouple, WeddingGuest, AccompanyingPerson, WeddingInfo
-from guests.forms import CoupleLoginForm, GuestLoginForm, GuestRegisterForm, GuestAddInfoForm, SpouseAddInfoForm, SpouseEditInfoForm, AddWeddingInfoForm, EditWeddingInfoForm
+from guests.models import WeddingCouple, WeddingGuest, AccompanyingPerson, WeddingInfo, FOOD
+from guests.forms import CoupleLoginForm, GuestLoginForm, GuestRegisterForm, GuestAddInfoForm, SpouseAddInfoForm, SpouseEditInfoForm, AddWeddingInfoForm, EditWeddingInfoForm, GuestEditInfoForm
 
 # Create your views here.
 
@@ -331,11 +331,40 @@ class GuestAddInfoView(View):
 
 class GuestDeleteInfoView(View):
     def get(self, request, guest_id):
-        guest = WeddingGuest.objects.get(pk=guest_id)
+        user = User.objects.get(pk=guest_id)
+        guest = WeddingGuest.objects.get(user=user)
         guest.first_name = ""
         guest.last_name = ""
         guest.email = ""
         guest.phone = None
         guest.Food = None
         guest.save()
-        return HttpResponseRedirect('/guest_info/{}'.format(user.id))
+        return HttpResponseRedirect('/guest_info/{}'.format(guest_id))
+
+class GuestEditInfoView(View):
+    def get(self, request, guest_id):
+        form = GuestEditInfoForm()
+        user = User.objects.get(pk=guest_id)
+        guest = WeddingGuest.objects.get(user=user)
+        form.fields['first_name'].initial = guest.first_name
+        form.fields['last_name'].initial = guest.last_name
+        form.fields['email'].initial = guest.email
+        form.fields['phone'].initial = guest.phone
+        form.fields['food'].initial = guest.food
+        ctx = {
+            'form': form,
+        }
+        return render(request, 'guest_edit_info.html', ctx)
+
+    def post(self, request, guest_id):
+        form = GuestEditInfoForm(request.POST)
+        if form.is_valid():
+            user = User.objects.get(pk=guest_id)
+            guest = WeddingGuest.objects.get(user=user)
+            guest.first_name = form.cleaned_data['first_name']
+            guest.last_name = form.cleaned_data['last_name']
+            guest.email = form.cleaned_data['email']
+            guest.phone = form.cleaned_data['phone']
+            guest.food = form.cleaned_data['food']
+            guest.save()
+            return HttpResponseRedirect('/guest_info/{}'.format(user.id))

@@ -15,7 +15,7 @@ class WeddingCouple(models.Model):
     phone = models.IntegerField(blank=True)
 
 class WeddingGuest(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, null=True)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
     first_name = models.CharField(max_length=64, blank=True)
     last_name = models.CharField(max_length=64, blank=True)
     email = models.EmailField(max_length=64, blank=True)

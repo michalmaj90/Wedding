@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
   <h3>Witaj {{ user.username }}</h3>
-  <a href="/guest_info/{{ guest.id }}">
+  <a href="/guest_info/{{ user.id }}">
     <button type="button" name="button">TWOJE DANE</button>
   </a>
   <a href="/couple_info">

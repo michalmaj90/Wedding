@@ -51,3 +51,10 @@ class EditWeddingInfoForm(forms.Form):
     premises_name = forms.CharField()
     premises_address = forms.CharField()
     premises_view = forms.CharField(widget=forms.Textarea)
+
+class GuestEditInfoForm(forms.Form):
+    first_name = forms.CharField(initial='Imię')
+    last_name = forms.CharField()
+    email = forms.EmailField()
+    phone = forms.IntegerField()
+    food = forms.IntegerField(widget=forms.Select(choices=FOOD))
