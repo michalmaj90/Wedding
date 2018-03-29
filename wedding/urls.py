@@ -15,12 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from guests.views import HelloView, CoupleLoginView, GuestLoginView, GuestRegisterView, CouplePageView, CoupleLogoutView, GuestLogoutView, SpousePageView, SpouseAddInfoView, SpouseInfoView, SpouseEditInfoView, SpouseDeleteView, WeddingPageView, AddWeddingInfoView, WeddingInfoView, EditWeddingInfoView, WeddingDeleteView, GuestPageView, GuestInfoView, GuestAddInfoView, GuestDeleteInfoView, GuestEditInfoView
+from guests.views import HelloView, CoupleLoginView, GuestLoginView, GuestRegisterView, CouplePageView, CoupleLogoutView, GuestLogoutView, SpousePageView, SpouseAddInfoView, SpouseInfoView, SpouseEditInfoView, SpouseDeleteView, WeddingPageView, AddWeddingInfoView, WeddingInfoView, EditWeddingInfoView, WeddingDeleteView, GuestPageView, GuestInfoView, GuestAddInfoView, GuestDeleteInfoView, GuestEditInfoView, GuestCoupleInfoView, GuestWeddingInfoView, CoupleRegisterView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^hello/', HelloView.as_view(), name='hello'),
     url(r'^couple_login/', CoupleLoginView.as_view(), name='couple-login'),
+    url(r'^couple_register', CoupleRegisterView.as_view(), name='couple-register'),
     url(r'^guest_login/', GuestLoginView.as_view(), name='guest-login'),
     url(r'^guest_register/', GuestRegisterView.as_view(), name='guest-register'),
     url(r'^couple_page', CouplePageView.as_view(), name='couple-page'),
@@ -40,6 +41,8 @@ urlpatterns = [
     url(r'^guest_info/(?P<guest_id>(\d)+)$', GuestInfoView.as_view(), name='guest-info'),
     url(r'^guest_add_info/(?P<guest_id>(\d)+)$', GuestAddInfoView.as_view(), name='guest-add-info'),
     url(r'^guest_delete_info/(?P<guest_id>(\d)+)$', GuestDeleteInfoView.as_view(), name='guest-delete-info'),
-    url(r'^guest_edit_info/(?P<guest_id>(\d)+)$', GuestEditInfoView.as_view(), name='guest-edit-info')
+    url(r'^guest_edit_info/(?P<guest_id>(\d)+)$', GuestEditInfoView.as_view(), name='guest-edit-info'),
+    url(r'^guest_couple_info', GuestCoupleInfoView.as_view(), name='guest-couple-info'),
+    url(r'^guest_wedding_info', GuestWeddingInfoView.as_view(), name='guest-wedding-info')
 
 ]

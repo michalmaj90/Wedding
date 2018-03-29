@@ -4,8 +4,8 @@
   <form action="" method="post">
     {% csrf_token %}
     {{ form|linebreaks }}
-    <input type="submit" value="Zaloguj się">
+    <input type="submit" value="Zarejestruj małżonka">
   </form>
-  <p><a href="/couple_register">Zarejestruj się</a></p>
-  <p><a href="/hello">Strona powitalna</a>
+  <a href="/couple_login">Wróć do strony logowania</a>
+
 {% endblock content %}

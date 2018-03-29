@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% if wedding %}
+    <h3>Informacje o weselu</h3>
+    {% for info in wedding %}
+      <p>Nazwa kościoła: {{ info.church_name }}</p>
+      <p>Adres kościoła: {{ info.church_address }}</p>
+      <p><a href="{{ info.church_view }}">Zobacz kościół</a></p>
+      <br><p>Nazwa sali: {{ info.premises_name }}</p>
+      <p>Adres sali: {{ info.premises_address }}</p>
+      <p><a href="{{ info.premises_view }}">Zobacz salę</a></p>
+    {% endfor %}
+    <a href="/guest_page/{{ user.id }}">Wróć do strony głównej</a>
+    <br><a href="/guest_logout">Wyloguj się</a>
+  {% else %}
+    <h3>Brak danych do wyświetlenia</h3>
+    <a href="/guest_page/{{ user.id }}">Wróć do strony głównej</a>
+    <br><a href="/guest_logout">Wyloguj się</a>
+  {% endif %}
+{% endblock content %}

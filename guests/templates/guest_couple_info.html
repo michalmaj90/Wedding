@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% if couple %}
+    <h3>Dane małżonków</h3>
+    {% for spouse in couple %}
+      <p>Imię: {{ spouse.first_name }}</p>
+      <p>Nazwisko: {{ spouse.last_name }}</p>
+      <p>Opis: {{ spouse.description }}</p>
+      <p>Email: {{ spouse.email }}</p>
+      <p>Telefon: {{ spouse.phone }}</p>
+    {% endfor %}
+    <a href="/guest_page/{{ user.id }}">Wróć do strony głównej</a>
+    <br><a href="/guest_logout">Wyloguj się</a>
+  {% else %}
+    <h3>Brak danych do wyświetlenia</h3>
+    <a href="/guest_page/{{ user.id }}">Wróć do strony głównej</a>
+    <br><a href="/guest_logout">Wyloguj się</a>
+  {% endif %}
+
+{% endblock content %}

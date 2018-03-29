@@ -1,7 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
   <h3>Witajcie młodzi!!</h3>
-  <a href="/spouse_page">
+  <a href="/spouse_page/{{ user.id }}">
+    <button type="button" name="button">TWOJE DANE</button>
+  </a>
+  <a href="/couple_info">
     <button type="button" name="button">WASZE DANE</button>
   </a>
   <a href="/wedding_page">

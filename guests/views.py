@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from guests.models import WeddingCouple, WeddingGuest, AccompanyingPerson, WeddingInfo, FOOD
-from guests.forms import CoupleLoginForm, GuestLoginForm, GuestRegisterForm, GuestAddInfoForm, SpouseAddInfoForm, SpouseEditInfoForm, AddWeddingInfoForm, EditWeddingInfoForm, GuestEditInfoForm
+from guests.forms import CoupleLoginForm, GuestLoginForm, GuestRegisterForm, GuestAddInfoForm, SpouseAddInfoForm, SpouseEditInfoForm, AddWeddingInfoForm, EditWeddingInfoForm, GuestEditInfoForm, CoupleRegisterForm
 
 # Create your views here.
 
@@ -12,6 +12,40 @@ class HelloView(View):
     def get(self, request):
         ctx = {}
         return render(request, 'hello.html', ctx)
+
+class CoupleRegisterView(View):
+    def get(self, request):
+        form = CoupleRegisterForm()
+        ctx = {
+            'form': form,
+        }
+        return render(request, 'couple_register.html', ctx)
+
+    def post(self, request):
+        form = CoupleRegisterForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            user = User.objects.filter(username=username)
+            password1 = form.cleaned_data['password1']
+            password2 = form.cleaned_data['password2']
+            email = form.cleaned_data['email']
+            if user:
+                ctx = {
+                    'form': form,
+                    'error': "Podany użytkownik już ustnieje!",
+                }
+                return render(request, 'couple_register.html', ctx)
+            else:
+                if password1 != password2:
+                    ctx = {
+                        'form': form,
+                        'error': "Podane hasła są różne!",
+                    }
+                    return render(request, 'couple_register.html', ctx)
+                else:
+                    user = User.objects.create_superuser(username=username, password=password1, email=email)
+                    login(request, user)
+                    return HttpResponseRedirect('/couple_page')
 
 class CoupleLoginView(View):
     def get(self, request):
@@ -39,7 +73,7 @@ class CoupleLoginView(View):
             else:
                 ctx = {
                     'form': form,
-                    'error': "Taki użytkownik nie istnieje!"
+                    'error': "Błędny login lub hasło!"
                 }
                 return render(request, 'couple_login.html', ctx)
 
@@ -368,3 +402,19 @@ class GuestEditInfoView(View):
             guest.food = form.cleaned_data['food']
             guest.save()
             return HttpResponseRedirect('/guest_info/{}'.format(user.id))
+
+class GuestCoupleInfoView(View):
+    def get(self, request):
+        couple = WeddingCouple.objects.all()
+        ctx = {
+            'couple': couple,
+        }
+        return render(request, 'guest_couple_info.html', ctx)
+
+class GuestWeddingInfoView(View):
+    def get(self, request):
+        wedding = WeddingInfo.objects.all()
+        ctx = {
+            'wedding': wedding,
+        }
+        return render(request, 'guest_wedding_info.html', ctx)
