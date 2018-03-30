@@ -2,13 +2,21 @@
 {% block content %}
   {% if couple %}
     <h3>Dane małżonków</h3>
-    {% for spouse in couple %}
-      <p>Imię: {{ spouse.first_name }}</p>
-      <p>Nazwisko: {{ spouse.last_name }}</p>
-      <p>Opis: {{ spouse.description }}</p>
-      <p>Email: {{ spouse.email }}</p>
-      <p>Telefon: {{ spouse.phone }}</p>
-    {% endfor %}
+    <ol>
+      {% for spouse in couple %}
+      <li>
+        {% if spouse.first_name %}
+          <p>Imię: {{ spouse.first_name }}</p>
+          <p>Nazwisko: {{ spouse.last_name }}</p>
+          <p>Opis: {{ spouse.description }}</p>
+          <p>Email: {{ spouse.email }}</p>
+          <p>Telefon: {{ spouse.phone }}</p>
+        {% else %}
+          <h4>Brak danych małżonka</h4>
+        {% endif %}
+      {% endfor %}
+      </li>
+    </ol>
     <a href="/guest_page/{{ user.id }}">Wróć do strony głównej</a>
     <br><a href="/guest_logout">Wyloguj się</a>
   {% else %}

@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from guests.views import HelloView, CoupleLoginView, GuestLoginView, GuestRegisterView, CouplePageView, CoupleLogoutView, GuestLogoutView, SpouseAddInfoView, SpouseInfoView, SpouseEditInfoView, SpouseDeleteView, WeddingPageView, AddWeddingInfoView, WeddingInfoView, EditWeddingInfoView, WeddingDeleteView, GuestPageView, GuestInfoView, GuestAddInfoView, GuestDeleteInfoView, GuestEditInfoView, GuestCoupleInfoView, GuestWeddingInfoView, CoupleRegisterView, CoupleInfoView, WeddingGuestsView, WeddingGuestInfoView
+from guests.views import HelloView, CoupleLoginView, GuestLoginView, GuestRegisterView, CouplePageView, CoupleLogoutView, GuestLogoutView, SpouseAddInfoView, SpouseInfoView, SpouseEditInfoView, SpouseDeleteView, AddWeddingInfoView, WeddingInfoView, EditWeddingInfoView, WeddingDeleteView, GuestPageView, GuestInfoView, GuestAddInfoView, GuestDeleteInfoView, GuestEditInfoView, GuestCoupleInfoView, GuestWeddingInfoView, CoupleRegisterView, CoupleInfoView, WeddingGuestsView, WeddingGuestInfoView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -32,7 +32,6 @@ urlpatterns = [
     url(r'^spouse_info/(?P<spouse_id>(\d)+)$', SpouseInfoView.as_view(), name='spouse-info'),
     url(r'^spouse_edit_info/(?P<spouse_id>(\d)+)$', SpouseEditInfoView.as_view(), name='spouse-edit-info'),
     url(r'^spouse_delete/(?P<spouse_id>(\d)+)$', SpouseDeleteView.as_view(), name='spouse-delete'),
-    url(r'^wedding_page/', WeddingPageView.as_view(), name='wedding-page'),
     url(r'^wedding_add_info', AddWeddingInfoView.as_view(), name='add-wedding-info'),
     url(r'^wedding_info', WeddingInfoView.as_view(), name='wedding-info'),
     url(r'^wedding_edit_info/(?P<wedding_id>(\d)+)$', EditWeddingInfoView.as_view(), name='wedding-edit-info'),

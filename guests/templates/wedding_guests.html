@@ -3,10 +3,16 @@
   {% if guests %}
     <ol>
       {% for guest in guests %}
-        <a href="/wedding_guest_info/{{ guest.user.id }}">
-          <li>{{ guest.first_name }} {{ guest.last_name }}</li>
-        </a>
+        <li>
+          {% if guest.first_name %}
+              <a href="/wedding_guest_info/{{ guest.user.id }}">
+                {{ guest.first_name }} {{ guest.last_name }}
+              </a>
+          {% else %}
+            <h4>Brak danych gościa</h4>
+          {% endif %}
       {% endfor %}
+        </li>
     </ol>
   {% else %}
     <h3>Brak gości do wyświetlenia!</h3>

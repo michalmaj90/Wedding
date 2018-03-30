@@ -1,14 +1,24 @@
 {% extends 'base.html' %}
 {% block content %}
   {% if spouses %}
+    <ol>
     {% for spouse in spouses %}
-      <h3>Wasze dane</h3>
-      <p>{{ spouse.first_name }}</p>
-      <p>{{ spouse.last_name }}</p>
-      <p>{{ spouse.description }}</p>
-      <p>{{ spouse.email }}</p>
-      <p>{{ spouse.phone }}</p>
+    <li>
+      {% if spouse.first_name %}
+        <p>{{ spouse.first_name }}</p>
+        <p>{{ spouse.last_name }}</p>
+        <p>{{ spouse.description }}</p>
+        <p>{{ spouse.email }}</p>
+        <p>{{ spouse.phone }}</p>
+      {% else %}
+        <h4>Brak danych użytkownika {{ spouse.user.username }}</h4>
+        <a href="spouse_add_info/{{ spouse.user.id }}">
+          <button type="button" name="button">Dodaj dane małżonka</button>
+        </a>
+      {% endif %}
     {% endfor %}
+    </li>
+    </ol>
   {% else %}
     <h3>Brak danych do wyświetlenia!</h3>
   {% endif %}

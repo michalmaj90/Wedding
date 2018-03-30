@@ -237,16 +237,6 @@ class SpouseDeleteView(View):
         spouse.save()
         return HttpResponseRedirect('/spouse_info/{}'.format(spouse_id))
 
-
-class WeddingPageView(View):
-    def get(self, request):
-        infos = WeddingInfo.objects.all()
-        ctx = {
-            'infos': infos,
-        }
-        return render(request, 'wedding_page.html', ctx)
-
-
 class AddWeddingInfoView(View):
     def get(self, request):
         form = AddWeddingInfoForm()

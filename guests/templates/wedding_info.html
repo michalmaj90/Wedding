@@ -3,18 +3,22 @@
   <h3>{{ text }}</h3>
   {% if infos %}
     {% for info in infos %}
+    <h3>Informacje o kościele</h3>
     <p>Nazwa kościoła: {{ info.church_name }}</p>
     <p>Adres kościoła: {{ info.church_address }}</p>
     <a target=_blank href="{{ info.church_view }}">Zobacz kościół</a></br><br>
+    <h3>Informacje o sali</h3>
     <p>Nazwa sali: {{ info.premises_name }}</p>
     <p>Adres sali: {{ info.premises_address }}</p>
     <a target=_blank href="{{ info.premises_view }}">Zobacz salę</a>
-    <br>
-    <a href="/wedding_edit_info/{{ info.id }}">Edytuj wesele</a>
+    <br><br><a href="/wedding_edit_info/{{ info.id }}">Edytuj wesele</a>
     <a href="/wedding_delete/{{ info.id }}">Skasuj wesele</a><br><br>
     {% endfor %}
+  {% else %}
+    <h3>Brak danych o weselu!</h3>
+    <a href="/wedding_add_info">
+      <button type="button" name="button">DODAJ DANE</button>
+    </a>
   {% endif %}
-  </br>
-  </br>
-  <a href="/wedding_page">Wróć do strony z salami</a>
+  <p><a href="/couple_page">Wróć do strony głównej</a></p>
 {% endblock content%}
