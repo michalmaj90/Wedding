@@ -8,11 +8,11 @@ FOOD = (
 # Create your models here.
 
 class WeddingCouple(models.Model):
-    first_name = models.CharField(max_length=64, default="", blank=True)
-    last_name = models.CharField(max_length=64, default="", blank=True)
-    description = models.CharField(max_length=300, default="", blank=True)
-    email = models.EmailField(max_length=64, default="", blank=True)
-    phone = models.IntegerField(blank=True)
+    first_name = models.CharField(max_length=64, default="", blank=True, null=True)
+    last_name = models.CharField(max_length=64, default="", blank=True, null=True)
+    description = models.CharField(max_length=300, default="", blank=True, null=True)
+    email = models.EmailField(max_length=64, default="", blank=True, null=True)
+    phone = models.IntegerField(blank=True, null=True)
 
 class WeddingGuest(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, primary_key=True)
