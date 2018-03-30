@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h3>{{ error }}</h3>
+  <h2>Logowanie gościa</h2>
+  <h4>{{ error }}</h4>
   <form action="" method="post">
     {% csrf_token %}
     {{ form|linebreaks }}

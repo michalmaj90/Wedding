@@ -6,6 +6,9 @@
   <p>Jedzenie: {{ guest.food }}</p>
   <p>Telefon: {{ guest.phone }}</p>
   <p>Email: <a href="mailto:{{ guest.email }}">{{ guest.email }}</a></p>
+  {% if companion %}
+    <p><a href="/wedding_companion_info/{{ guest.user.id }}">Osoba towarzysząca</a></p>
+  {% endif %}
   <br><a href="/couple_page">Wróć do strony głównej</a>
 
 {% endblock content %}

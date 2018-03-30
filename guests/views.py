@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from guests.models import WeddingCouple, WeddingGuest, AccompanyingPerson, WeddingInfo, FOOD
-from guests.forms import CoupleLoginForm, GuestLoginForm, GuestRegisterForm, GuestAddInfoForm, SpouseAddInfoForm, SpouseEditInfoForm, AddWeddingInfoForm, EditWeddingInfoForm, GuestEditInfoForm, CoupleRegisterForm
+from guests.forms import CoupleLoginForm, GuestLoginForm, GuestRegisterForm, GuestAddInfoForm, SpouseAddInfoForm, SpouseEditInfoForm, AddWeddingInfoForm, EditWeddingInfoForm, GuestEditInfoForm, CoupleRegisterForm, CompanionAddInfoForm, CompanionEditInfoForm
 
 # Create your views here.
 
@@ -132,7 +132,8 @@ class GuestRegisterView(View):
                 else:
                     user = User.objects.create_user(username=username, password=password1)
                     login(request, user)
-                    WeddingGuest.objects.create(user=user, first_name="", last_name="", email="", phone=None, food=None)
+                    new_guest = WeddingGuest.objects.create(user=user, first_name="", last_name="", email="", phone=None, food=None)
+                    AccompanyingPerson.objects.create(companion=new_guest, first_name="", last_name="", food="")
                     return HttpResponseRedirect('/guest_page/{}'.format(user.id))
 
 
@@ -311,10 +312,13 @@ class WeddingGuestInfoView(View):
     def get(self, request, guest_id):
         user = User.objects.get(pk=guest_id)
         guest = WeddingGuest.objects.get(user=user)
+        companion = AccompanyingPerson.objects.get(companion=guest)
         ctx = {
             'guest': guest,
+            'companion': companion,
         }
         return render(request, 'wedding_guest_info.html', ctx)
+
 
 class WeddingDeleteView(View):
     def get(self, request, wedding_id):
@@ -337,9 +341,11 @@ class GuestInfoView(View):
     def get(self, request, guest_id):
         user = User.objects.get(pk=guest_id)
         guest = WeddingGuest.objects.get(user=user)
+        companion = AccompanyingPerson.objects.get(companion=guest)
         ctx = {
             'guest': guest,
             'user': user,
+            'companion': companion,
         }
         return render(request, 'guest_info.html', ctx)
 
@@ -409,6 +415,80 @@ class GuestEditInfoView(View):
             guest.food = form.cleaned_data['food']
             guest.save()
             return HttpResponseRedirect('/guest_info/{}'.format(user.id))
+
+class CompanionInfoView(View):
+    def get(self, request, companion_id):
+        guest = WeddingGuest.objects.get(pk=companion_id)
+        companion = AccompanyingPerson.objects.get(companion=guest)
+        ctx = {
+            'guest': guest,
+            'companion': companion,
+        }
+        return render(request, 'companion_info.html', ctx)
+
+class CompanionAddInfoView(View):
+    def get(self, request, companion_id):
+        form = CompanionAddInfoForm()
+        guest = WeddingGuest.objects.get(pk=companion_id)
+        companion = AccompanyingPerson.objects.get(companion=guest)
+        ctx = {
+            'form': form,
+        }
+        return render(request, 'companion_add_info.html', ctx)
+
+    def post(self, request, companion_id):
+        form = CompanionAddInfoForm(request.POST)
+        if form.is_valid():
+            guest = WeddingGuest.objects.get(pk=companion_id)
+            companion = AccompanyingPerson.objects.get(companion=guest)
+            companion.first_name = form.cleaned_data['first_name']
+            companion.last_name = form.cleaned_data['last_name']
+            companion.food = form.cleaned_data['food']
+            companion.save()
+            return HttpResponseRedirect('/companion_info/{}'.format(companion_id))
+
+class CompanionEditInfoView(View):
+    def get(self, request, companion_id):
+        form = CompanionEditInfoForm()
+        guest = WeddingGuest.objects.get(pk=companion_id)
+        companion = AccompanyingPerson.objects.get(companion=guest)
+        form.fields['first_name'].initial = companion.first_name
+        form.fields['last_name'].initial = companion.last_name
+        form.fields['food'].initial = companion.food
+        ctx = {
+            'form': form,
+        }
+        return render(request, 'companion_edit_info.html', ctx)
+
+    def post(self, request, companion_id):
+        form = CompanionEditInfoForm(request.POST)
+        if form.is_valid():
+            guest = WeddingGuest.objects.get(pk=companion_id)
+            companion = AccompanyingPerson.objects.get(companion=guest)
+            companion.first_name = form.cleaned_data['first_name']
+            companion.last_name = form.cleaned_data['last_name']
+            companion.food = form.cleaned_data['food']
+            companion.save()
+            return HttpResponseRedirect('/companion_info/{}'.format(companion_id))
+
+class WeddingCompanionInfoView(View):
+    def get(self, request, companion_id):
+        guest = WeddingGuest.objects.get(pk=companion_id)
+        companion = AccompanyingPerson.objects.get(companion=guest)
+        ctx = {
+            'companion': companion,
+        }
+        return render(request, 'wedding_companion_info.html', ctx)
+
+class CompanionDeleteInfoView(View):
+    def get(self, request, companion_id):
+        guest = WeddingGuest.objects.get(pk=companion_id)
+        companion = AccompanyingPerson.objects.get(companion=guest)
+        companion.first_name = ""
+        companion.last_name = ""
+        companion.food = ""
+        companion.save()
+        return HttpResponseRedirect('/companion_info/{}'.format(companion_id))
 
 class GuestCoupleInfoView(View):
     def get(self, request):

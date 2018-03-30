@@ -64,3 +64,13 @@ class GuestEditInfoForm(forms.Form):
     email = forms.EmailField()
     phone = forms.IntegerField()
     food = forms.CharField(widget=forms.Select(choices=FOOD))
+
+class CompanionAddInfoForm(forms.Form):
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    food = forms.CharField(widget=forms.Select(choices=FOOD))
+
+class CompanionEditInfoForm(forms.Form):
+    first_name = forms.CharField()
+    last_name = forms.CharField()
+    food = forms.CharField(widget=forms.Select(choices=FOOD))

@@ -7,6 +7,7 @@
     <p>Email: {{ guest.email }}</p>
     <p>Telefon: {{ guest.phone }}</p>
     <p>Opcja jedzenia: {{ guest.food }}</p>
+    <p><a href="/companion_info/{{ user.id }}">Osoba towarzysząca</a></p>
     <a href="/guest_edit_info/{{ user.id }}">Edytuj dane</a>
     <a href="/guest_delete_info/{{ user.id }}">Wyczyść dane</a>
   {% else %}

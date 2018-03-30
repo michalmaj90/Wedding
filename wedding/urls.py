@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from guests.views import HelloView, CoupleLoginView, GuestLoginView, GuestRegisterView, CouplePageView, CoupleLogoutView, GuestLogoutView, SpouseAddInfoView, SpouseInfoView, SpouseEditInfoView, SpouseDeleteView, AddWeddingInfoView, WeddingInfoView, EditWeddingInfoView, WeddingDeleteView, GuestPageView, GuestInfoView, GuestAddInfoView, GuestDeleteInfoView, GuestEditInfoView, GuestCoupleInfoView, GuestWeddingInfoView, CoupleRegisterView, CoupleInfoView, WeddingGuestsView, WeddingGuestInfoView
+from guests.views import HelloView, CoupleLoginView, GuestLoginView, GuestRegisterView, CouplePageView, CoupleLogoutView, GuestLogoutView, SpouseAddInfoView, SpouseInfoView, SpouseEditInfoView, SpouseDeleteView, AddWeddingInfoView, WeddingInfoView, EditWeddingInfoView, WeddingDeleteView, GuestPageView, GuestInfoView, GuestAddInfoView, GuestDeleteInfoView, GuestEditInfoView, CompanionInfoView, CompanionAddInfoView, CompanionEditInfoView, CompanionDeleteInfoView, WeddingCompanionInfoView, GuestCoupleInfoView, GuestWeddingInfoView, CoupleRegisterView, CoupleInfoView, WeddingGuestsView, WeddingGuestInfoView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -43,6 +43,11 @@ urlpatterns = [
     url(r'^guest_add_info/(?P<guest_id>(\d)+)$', GuestAddInfoView.as_view(), name='guest-add-info'),
     url(r'^guest_delete_info/(?P<guest_id>(\d)+)$', GuestDeleteInfoView.as_view(), name='guest-delete-info'),
     url(r'^guest_edit_info/(?P<guest_id>(\d)+)$', GuestEditInfoView.as_view(), name='guest-edit-info'),
+    url(r'^companion_info/(?P<companion_id>(\d)+)$', CompanionInfoView.as_view(), name='companion-info'),
+    url(r'^companion_add_info/(?P<companion_id>(\d)+)$', CompanionAddInfoView.as_view(), name='companion-add-info'),
+    url(r'^companion_edit_info/(?P<companion_id>(\d)+)$', CompanionEditInfoView.as_view(), name='companion-edit-info'),
+    url(r'^companion_delete_info/(?P<companion_id>(\d)+)$', CompanionDeleteInfoView.as_view(), name='companion-delete-info'),
+    url(r'^wedding_companion_info/(?P<companion_id>(\d)+)$', WeddingCompanionInfoView.as_view(), name='wedding-companion-info'),
     url(r'^guest_couple_info', GuestCoupleInfoView.as_view(), name='guest-couple-info'),
     url(r'^guest_wedding_info', GuestWeddingInfoView.as_view(), name='guest-wedding-info')
 

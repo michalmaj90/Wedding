@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+  {% if companion.first_name %}
+    <h3>Dane osoby towarzyszącej</h3>
+    <p>Imię: {{ companion.first_name }}</p>
+    <p>Nazwisko: {{ companion.last_name }}</p>
+    <p>Jedzenie: {{ companion.food }}</p>
+  {% else %}
+    <h3>Brak danych do wyświetlenia!</h3>
+  {% endif %}
+  <br><br><a href="/couple_page/">Wróć do strony głównej</a>
+{% endblock content %}
