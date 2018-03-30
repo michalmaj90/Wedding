@@ -45,6 +45,7 @@ class CoupleRegisterView(View):
                 else:
                     user = User.objects.create_superuser(username=username, password=password1, email=email)
                     login(request, user)
+                    spouse = WeddingCouple.objects.create(user=user, first_name="", last_name="", description="", email="", phone=None)
                     return HttpResponseRedirect('/couple_page')
 
 class CoupleLoginView(View):
@@ -73,7 +74,7 @@ class CoupleLoginView(View):
             else:
                 ctx = {
                     'form': form,
-                    'error': "Błędny login lub hasło!"
+                    'error': "Taki użytkownik nie istnieje!"
                 }
                 return render(request, 'couple_login.html', ctx)
 
@@ -140,6 +141,14 @@ class CouplePageView(View):
         ctx = {}
         return render(request, 'couple_page.html', ctx)
 
+class CoupleInfoView(View):
+    def get(self, request):
+        spouses = WeddingCouple.objects.all()
+        ctx = {
+            'spouses': spouses,
+        }
+        return render(request, 'couple_info.html', ctx)
+
 class CoupleLogoutView(View):
     def get(self, request):
         logout(request)
@@ -151,48 +160,48 @@ class GuestLogoutView(View):
         logout(request)
         return HttpResponseRedirect('/guest_login')
 
-
-class SpousePageView(View):
-    def get(self, request):
-        spouse = WeddingCouple.objects.all()
-        ctx = {
-            'spouse': spouse,
-            }
-        return render(request, 'spouse_page.html', ctx)
-
-
 class SpouseAddInfoView(View):
-    def get(self, request):
+    def get(self, request, spouse_id):
         form = SpouseAddInfoForm()
         ctx = {
             'form': form,
+            'spouse_id': spouse_id,
         }
         return render(request, 'spouse_add_info.html', ctx)
 
-    def post(self, request):
+    def post(self, request, spouse_id):
         form = SpouseAddInfoForm(request.POST)
         if form.is_valid():
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-            description = form.cleaned_data['description']
-            email = form.cleaned_data['email']
-            phone = form.cleaned_data['phone']
-            spouse = WeddingCouple.objects.create(first_name=first_name, last_name=last_name, description=description, email=email, phone=phone)
-            return HttpResponseRedirect("/spouse_info/{}".format(spouse.id))
+            user = User.objects.get(pk=spouse_id)
+            spouse = WeddingCouple.objects.get(user=user)
+            spouse.first_name = form.cleaned_data['first_name']
+            spouse.last_name = form.cleaned_data['last_name']
+            spouse.description = form.cleaned_data['description']
+            spouse.email = form.cleaned_data['email']
+            spouse.phone = form.cleaned_data['phone']
+            spouse.save()
+            return HttpResponseRedirect("/spouse_info/{}".format(spouse_id))
 
 
 class SpouseInfoView(View):
-    def get(self, request):
-        spouses = WeddingCouple.objects.all()
+    def get(self, request, spouse_id):
+        user = User.objects.get(pk=spouse_id)
+        spouse= WeddingCouple.objects.get(user=user)
         ctx = {
-            'spouses': spouses,
+            'spouse': spouse,
         }
         return render(request, 'spouse_info.html', ctx)
 
 class SpouseEditInfoView(View):
     def get(self, request, spouse_id):
-        spouse = WeddingCouple.objects.get(pk=spouse_id)
+        user = User.objects.get(pk=spouse_id)
+        spouse = WeddingCouple.objects.get(user=user)
         form = SpouseEditInfoForm()
+        form.fields['first_name'].initial = spouse.first_name
+        form.fields['last_name'].initial = spouse.last_name
+        form.fields['description'].initial = spouse.description
+        form.fields['email'].initial = spouse.email
+        form.fields['phone'].initial = spouse.phone
         ctx = {
             'form': form,
         }
@@ -201,36 +210,32 @@ class SpouseEditInfoView(View):
     def post(self, request, spouse_id):
         form = SpouseEditInfoForm(request.POST)
         if form.is_valid():
-            spouses = WeddingCouple.objects.all()
-            spouse = WeddingCouple.objects.get(pk=spouse_id)
-            first_name = form.cleaned_data['first_name']
-            last_name = form.cleaned_data['last_name']
-            description = form.cleaned_data['description']
-            email = form.cleaned_data['email']
-            phone = form.cleaned_data['phone']
-            if spouse.first_name != first_name:
-                spouse.first_name = first_name
-            if spouse.last_name != last_name:
-                spouse.last_name = last_name
-            if spouse.description != description:
-                spouse.description = description
-            if spouse.email != email:
-                spouse.email = email
-            if spouse.phone != phone:
-                spouse.phone = phone
+            user = User.objects.get(pk=spouse_id)
+            spouse = WeddingCouple.objects.get(user=user)
+            spouse.first_name = form.cleaned_data['first_name']
+            spouse.last_name = form.cleaned_data['last_name']
+            spouse.description = form.cleaned_data['description']
+            spouse.email = form.cleaned_data['email']
+            spouse.phone = form.cleaned_data['phone']
             spouse.save()
             ctx = {
                 'text': "Zmieniono dane małżonka!",
-                'spouses': spouses,
+                'spouse': spouse,
             }
             return render(request, 'spouse_info.html', ctx)
 
 
 class SpouseDeleteView(View):
     def get(self, request, spouse_id):
-        spouse = WeddingCouple.objects.get(pk=spouse_id)
-        spouse.delete()
-        return HttpResponseRedirect('/spouse_info')
+        user = User.objects.get(pk=spouse_id)
+        spouse = WeddingCouple.objects.get(user=user)
+        spouse.first_name = ""
+        spouse.last_name = ""
+        spouse.description = ""
+        spouse.email = ""
+        spouse.phone = None
+        spouse.save()
+        return HttpResponseRedirect('/spouse_info/{}'.format(spouse_id))
 
 
 class WeddingPageView(View):
@@ -279,6 +284,13 @@ class WeddingInfoView(View):
 class EditWeddingInfoView(View):
     def get(self, request, wedding_id):
         form = EditWeddingInfoForm()
+        wedding = WeddingInfo.objects.get(pk=wedding_id)
+        form.fields['church_name'].initial = wedding.church_name
+        form.fields['church_address'].initial = wedding.church_address
+        form.fields['church_view'].initial = wedding.church_view
+        form.fields['premises_name'].initial = wedding.premises_name
+        form.fields['premises_address'].initial = wedding.premises_address
+        form.fields['premises_view'].initial = wedding.premises_view
         ctx = {
             'form': form,
         }
@@ -288,26 +300,31 @@ class EditWeddingInfoView(View):
         form = EditWeddingInfoForm(request.POST)
         if form.is_valid():
             info = WeddingInfo.objects.get(pk=wedding_id)
-            church_name = form.cleaned_data['church_name']
-            church_address = form.cleaned_data['church_address']
-            church_view = form.cleaned_data['church_view']
-            premises_name = form.cleaned_data['premises_name']
-            premises_address = form.cleaned_data['premises_address']
-            premises_view = form.cleaned_data['premises_view']
-            if info.church_name != church_name:
-                info.church_name = church_name
-            if info.church_address != church_address:
-                info.church_address = church_address
-            if info.church_view != church_view:
-                info.church_view = church_view
-            if info.premises_name != premises_name:
-                info.premises_name = premises_name
-            if info.premises_address != premises_address:
-                info.premises_address = premises_address
-            if info.premises_view != premises_view:
-                info.premises_view = premises_view
+            info.church_name = form.cleaned_data['church_name']
+            info.church_address = form.cleaned_data['church_address']
+            info.church_view = form.cleaned_data['church_view']
+            info.premises_name = form.cleaned_data['premises_name']
+            info.premises_address = form.cleaned_data['premises_address']
+            info.premises_view = form.cleaned_data['premises_view']
             info.save()
             return HttpResponseRedirect('/wedding_info')
+
+class WeddingGuestsView(View):
+    def get(self, request):
+        guests = WeddingGuest.objects.all()
+        ctx = {
+            'guests': guests,
+        }
+        return render(request, 'wedding_guests.html', ctx)
+
+class WeddingGuestInfoView(View):
+    def get(self, request, guest_id):
+        user = User.objects.get(pk=guest_id)
+        guest = WeddingGuest.objects.get(user=user)
+        ctx = {
+            'guest': guest,
+        }
+        return render(request, 'wedding_guest_info.html', ctx)
 
 class WeddingDeleteView(View):
     def get(self, request, wedding_id):

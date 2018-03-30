@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+  <h3>Dane gościa:</h3>
+  <p>Imię: {{ guest.first_name }}</p>
+  <p>Nazwisko: {{ guest.last_name }}</p>
+  <p>Jedzenie: {{ guest.food }}</p>
+  <p>Telefon: {{ guest.phone }}</p>
+  <p>Email: <a href="mailto:{{ guest.email }}">{{ guest.email }}</a></p>
+  <br><a href="/couple_page">Wróć do strony głównej</a>
+
+{% endblock content %}

@@ -26,7 +26,7 @@ class GuestAddInfoForm(forms.Form):
     last_name = forms.CharField()
     email = forms.EmailField()
     phone = forms.IntegerField()
-    food = forms.IntegerField(widget=forms.Select(choices=FOOD))
+    food = forms.CharField(widget=forms.Select(choices=FOOD))
 
 class SpouseAddInfoForm(forms.Form):
     first_name = forms.CharField()
@@ -63,4 +63,4 @@ class GuestEditInfoForm(forms.Form):
     last_name = forms.CharField()
     email = forms.EmailField()
     phone = forms.IntegerField()
-    food = forms.IntegerField(widget=forms.Select(choices=FOOD))
+    food = forms.CharField(widget=forms.Select(choices=FOOD))
