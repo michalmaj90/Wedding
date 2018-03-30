@@ -7,10 +7,10 @@ class CoupleLoginForm(forms.Form):
     password = forms.CharField(widget=forms.PasswordInput)
 
 class CoupleRegisterForm(forms.Form):
-    username = forms.CharField()
-    password1 = forms.CharField(widget=forms.PasswordInput)
-    password2 = forms.CharField(widget=forms.PasswordInput)
-    email = forms.EmailField()
+    username = forms.CharField(required=False)
+    password1 = forms.CharField(widget=forms.PasswordInput, required=False)
+    password2 = forms.CharField(widget=forms.PasswordInput, required=False)
+    email = forms.EmailField(required=False)
 
 class GuestLoginForm(forms.Form):
     username = forms.CharField()
