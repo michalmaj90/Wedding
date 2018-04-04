@@ -1,10 +1,16 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="login">
   <h3>{{ error }}</h3>
   <form action="" method="post">
     {% csrf_token %}
     {{ form|linebreaks }}
     <input type="submit" value="Zarejestruj się">
   </form>
-  <p><a href="/guest_login">Wróć do strony logowania</a></p>
+</div>
+<div class="mainPage">
+  <a href="/guest_login">
+    <button type="button" name="button">Wróć do strony logowania</button>
+  </a>
+</div>
 {% endblock content %}

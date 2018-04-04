@@ -1,8 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h3>{{ text }}</h3>
-  {% if spouse.first_name %}
-  <h3>Twoje dane</h3>
+  <div class="content">
+    <h3>{{ text }}</h3>
+    {% if spouse.first_name %}
+    <h3>Twoje dane</h3>
     <p>Imię: {{ spouse.first_name }}</p>
     <p>Nazwisko: {{ spouse.last_name }}</p>
     <p>Twój opis: {{ spouse.description }}</p>
@@ -10,11 +11,21 @@
     <p>Telefon: {{ spouse.phone }}</p>
     <a href="/spouse_edit_info/{{ user.id }}">Edytuj dane</a>
     <a href="/spouse_delete/{{ user.id }}">Wyczyść dane</a><br><br>
-  {% else %}
+    {% else %}
     <h3>Brak danych do wyświetlenia!</h3>
     <a href="/spouse_add_info/{{ user.id }}">
       <button type="button" name="button">DODAJ SWOJE DANE</button>
     </a>
-  {% endif %}
-  <p><a href="/couple_page">Wróć do strony głównej</a></p>
+    {% endif %}
+  </div>
+  <div class="mainPage">
+    <a href="/couple_page">
+      <button type="button" name="button">Wróć do strony głównej</button>
+    </a>
+  </div>
+  <div class="logout">
+    <a href="{% url 'couple-logout' %}">
+      <button type="button" name="button">Wyloguj się</button>
+    </a>
+  </div>
 {% endblock content %}

@@ -1,28 +1,36 @@
 {% extends 'base.html' %}
 {% block content %}
-  {% if couple %}
+  <div class="content">
+    {% if couple %}
     <h3>Dane małżonków</h3>
     <ol>
       {% for spouse in couple %}
       <li>
         {% if spouse.first_name %}
-          <p>Imię: {{ spouse.first_name }}</p>
-          <p>Nazwisko: {{ spouse.last_name }}</p>
-          <p>Opis: {{ spouse.description }}</p>
-          <p>Email: {{ spouse.email }}</p>
-          <p>Telefon: {{ spouse.phone }}</p>
+        <p>Imię: {{ spouse.first_name }}</p>
+        <p>Nazwisko: {{ spouse.last_name }}</p>
+        <p>Opis: {{ spouse.description }}</p>
+        <p>Email: {{ spouse.email }}</p>
+        <p>Telefon: {{ spouse.phone }}</p>
         {% else %}
-          <h4>Brak danych małżonka</h4>
+        <h4>Brak danych małżonka</h4>
         {% endif %}
-      {% endfor %}
+        {% endfor %}
       </li>
     </ol>
-    <a href="/guest_page/{{ user.id }}">Wróć do strony głównej</a>
-    <br><a href="/guest_logout">Wyloguj się</a>
-  {% else %}
+    {% else %}
     <h3>Brak danych do wyświetlenia</h3>
-    <a href="/guest_page/{{ user.id }}">Wróć do strony głównej</a>
-    <br><a href="/guest_logout">Wyloguj się</a>
-  {% endif %}
+    {% endif %}
+  </div>
+  <div class="mainPage">
+    <a href="/guest_page/{{ user.id }}">
+      <button type="button" name="button">Wróć do strony głównej</button>
+    </a>
+  </div>
+  <div class="logout">
+    <a href="/guest_logout">
+      <button type="button" name="button">Wyloguj się</button>
+    </a>
+  </div>
 
 {% endblock content %}

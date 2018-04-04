@@ -1,12 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h2>Logowanie młodych</h2>
-  <h3>{{ error }}</h3>
-  <form action="" method="post">
-    {% csrf_token %}
-    {{ form|linebreaks }}
-    <input type="submit" value="Zaloguj się">
-  </form>
-  <p><a href="/couple_register">Zarejestruj się</a></p>
-  <p><a href="/hello">Strona powitalna</a>
+  <div class="form">
+    <h2>Logowanie młodych</h2>
+    <h3>{{ error }}</h3>
+    <form action="" method="post">
+      {% csrf_token %}
+      {{ form|linebreaks }}
+      <input type="submit" value="Zaloguj się">
+    </form>
+  </div>
+  <div class="register">
+    <a href="/couple_register">
+      <button type="button" name="button">Zarejestruj się</button>
+    </a>
+  </div>
+  <div class="mainPage">
+    <a href="/hello">
+      <button type="button" name="button">Strona powitalna</button>
+    </a>
+  </div>
 {% endblock content %}

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="login">
   <h2>Rejestracja młodych</h2>
   <h3>{{ error }}</h3>
   <form action="" method="post">
@@ -7,6 +8,11 @@
     {{ form|linebreaks }}
     <input type="submit" value="Zarejestruj małżonka">
   </form>
-  <a href="/couple_login">Wróć do strony logowania</a>
+</div>
+<div class="mainPage">
+  <a href="/couple_login">
+    <button type="button" name="button">Wróć do strony logowania</button>
+  </a>
+</div>
 
 {% endblock content %}

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
+<div class="form">
   <h2>Logowanie gościa</h2>
   <h4>{{ error }}</h4>
   <form action="" method="post">
@@ -7,6 +8,15 @@
     {{ form|linebreaks }}
     <input type="submit" value="Zaloguj się">
   </form>
-  <p><a href="/guest_register">Zarejestruj się</a></p>
-  <p><a href="/hello">Strona powitalna</a></p>
+</div>
+<div class="register">
+  <a href="/guest_register">
+    <button type="button" name="button">Zarejestruj się</button>
+  </a>
+</div>
+<div class="mainPage">
+  <a href="/hello">
+    <button type="button" name="button">Strona powitalna</button>
+  </a>
+</div>
 {% endblock content %}

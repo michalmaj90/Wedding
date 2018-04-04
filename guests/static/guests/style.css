@@ -1,3 +1,147 @@
-body {
-  background-color: red;
+html {
+  background: url("images/background2.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.header {
+  background-color: rgb(179, 255, 179, 0.8);
+  width: 100%;
+  padding: 5px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: 'Aguafina Script';
+  font-size: 25px;
+  line-height: 25px;
+  font-stretch: ultra-expanded;
+  color: white;
+  text-align: center;
+}
+
+
+.coupleButton {
+  height: 100px;
+  width: 300px;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: rgb(179, 255, 179, 0.9);
+  border-radius: 10px;
+  font-size: 18px;
+  text-decoration: inherit;
+  text-align: center;
+  line-height: 100px;
+  color: white;
+}
+
+.guestButton {
+  height: 100px;
+  width: 300px;
+  position: absolute;
+  top: 300px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  background-color: rgb(179, 255, 179, 0.9);
+  border-radius: 10px;
+  font-size: 18px;
+  text-decoration: inherit;
+  text-align: center;
+  line-height: 100px;
+  color: white;
+}
+
+.form {
+  position: absolute;
+  top: 30%;
+  bottom: 50%;
+  left: 40%;
+  right: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  color: white;
+}
+
+.form form {
+  text-align: center;
+  font-size: 20px;
+  color: white;
+  border-radius: 10px;
+}
+
+.form input{
+  height: 20px;
+  background-color: rgb(179, 255, 179, 0.9);
+  border-radius: 10px;
+  color: white;
+}
+
+.register{
+  position: absolute;
+  left: 42%;
+  top: 70%;
+  bottom: 50%;
+}
+
+.register button {
+  position: absolute;
+  background-color: rgb(179, 255, 179, 0.9);
+  border-radius: 10px;
+  color: white;
+}
+
+.mainPage {
+  position: absolute;
+  top: 20%;
+}
+
+.mainPage button {
+  background-color: rgb(179, 255, 179, 0.8);
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
+}
+
+.content {
+  position: absolute;
+  top: 30%;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 16px;
+  text-align: center;
+  color: white;
+}
+
+.content button {
+  /*position: absolute;*/
+  background-color: rgb(179, 255, 179, 0.9);
+  border-radius: 10px;
+  color: white;
+}
+
+.logout {
+  position: absolute;
+  top: 20%;
+  left: 90%;
+}
+
+.logout button{
+  background-color: rgb(179, 255, 179, 0.8);
+  border-radius: 10px;
+  border: none;
+  font-size: 16px;
+  color: white;
+  font-weight: bold;
 }

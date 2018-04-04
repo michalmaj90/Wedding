@@ -1,27 +1,40 @@
 {% extends 'base.html' %}
 {% block content %}
-  {% if spouses %}
+  <div class="content">
+    {% if spouses %}
     <ol>
-    {% for spouse in spouses %}
-    <li>
-      {% if spouse.first_name %}
+      {% for spouse in spouses %}
+      <li>
+        {% if spouse.first_name %}
         <p>{{ spouse.first_name }}</p>
         <p>{{ spouse.last_name }}</p>
         <p>{{ spouse.description }}</p>
         <p>{{ spouse.email }}</p>
         <p>{{ spouse.phone }}</p>
-      {% else %}
+        {% else %}
         <h4>Brak danych użytkownika {{ spouse.user.username }}</h4>
         <a href="spouse_add_info/{{ spouse.user.id }}">
           <button type="button" name="button">Dodaj dane małżonka</button>
         </a>
-      {% endif %}
-    {% endfor %}
-    </li>
+        {% endif %}
+        {% endfor %}
+      </li>
     </ol>
-  {% else %}
+    {% else %}
     <h3>Brak danych do wyświetlenia!</h3>
-  {% endif %}
-  <a href="/couple_page">Wróć do strony głównej</a>
+    {% endif %}
+  </div>
+  <div class="mainPage">
+    <a href="/couple_page">
+      <button type="button" name="button">Wróć do strony głównej</button>
+    </a>
+  </div>
+  <div class="logout">
+    <a href="{% url 'couple-logout' %}">
+      <button type="button" name="button">Wyloguj się</button>
+    </a>
+  </div>
+
+  </div>
 
 {% endblock content %}

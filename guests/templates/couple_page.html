@@ -1,17 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h3>Witajcie młodzi!!</h3>
-  <a href="/spouse_info/{{ user.id }}">
-    <button type="button" name="button">TWOJE DANE</button>
-  </a>
-  <a href="/couple_info">
-    <button type="button" name="button">WASZE DANE</button>
-  </a>
-  <a href="/wedding_info">
-    <button type="button" name="button">DANE WESELA</button>
-  </a>
-  <a href="/wedding_guests">
-    <button type="button" name="button">GOŚCIE WESELNI</button>
-  </a>
-  <p><a href="{% url 'couple-logout' %}">Wyloguj się</a></p>
+  <div class="content">
+    <h3>Witajcie młodzi!!</h3>
+    <a href="/spouse_info/{{ user.id }}">
+      <button type="button" name="button">TWOJE DANE</button>
+    </a>
+    <a href="/couple_info">
+      <button type="button" name="button">WASZE DANE</button>
+    </a>
+    <a href="/wedding_info">
+      <button type="button" name="button">DANE WESELA</button>
+    </a>
+    <a href="/wedding_guests">
+      <button type="button" name="button">GOŚCIE WESELNI</button>
+    </a>
+  </div>
+  <div class="logout">
+    <a href="{% url 'couple-logout' %}">
+      <button type="button" name="button">Wyloguj się</button>
+    </a>
+  </div>
 {% endblock content %}
