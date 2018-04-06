@@ -1,9 +1,20 @@
 {% extends 'base.html' %}
 {% block content %}
-  <form action="" method="post">
-    {% csrf_token %}
-    {{ form|linebreaks }}
-    <input type="submit" value="Dodaj informacje">
-  </form>
-  <a href="/couple_page">Wróć do strony małżonków</a>
+  <div class="form">
+    <form action="" method="post">
+      {% csrf_token %}
+      {{ form|linebreaks }}
+      <input type="submit" value="Dodaj informacje">
+    </form>
+  </div>
+  <div class="mainPage">
+    <a href="/couple_page/">
+      <button type="button" name="button">Wróć do strony głównej</button>
+    </a>
+  </div>
+  <div class="logout">
+    <a href="{% url 'couple-logout' %}">
+      <button type="button" name="button">Wyloguj się</button>
+    </a>
+  </div>
 {% endblock content %}

@@ -1,22 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
   {% if guests %}
-    <ol>
-      {% for guest in guests %}
-        <li>
+    <div class="content">
+      <ol>
+        {% for guest in guests %}
           {% if guest.first_name %}
-              <a href="/wedding_guest_info/{{ guest.user.id }}">
-                {{ guest.first_name }} {{ guest.last_name }}
-              </a>
-          {% else %}
-            <h4>Brak danych gościa</h4>
+            <li>
+                <a href="/wedding_guest_info/{{ guest.user.id }}">
+                  {{ guest.first_name }} {{ guest.last_name }}
+                </a>
+              {% else %}
+                <h4>Brak danych gościa</h4>
+            </li>
           {% endif %}
-      {% endfor %}
-        </li>
-    </ol>
-  {% else %}
-    <h3>Brak gości do wyświetlenia!</h3>
-  {% endif %}
-  <a href="/couple_page">Wróć do strony głównej</a>
-
+        {% endfor %}
+      </ol>
+    {% else %}
+      <h3>Brak gości do wyświetlenia!</h3>
+    {% endif %}
+    </div>
+  <div class="mainPage">
+    <a href="/couple_page">
+      <button type="button" name="button">Wróć do strony głównej</button>
+    </a>
+  </div>
+  <div class="logout">
+    <a href="{% url 'couple-logout' %}">
+      <button type="button" name="button">Wyloguj się</button>
+    </a>
+  </div>
 {% endblock content %}

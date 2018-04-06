@@ -131,6 +131,14 @@ html {
   color: white;
 }
 
+.content ol li a{
+  color: white;
+  text-decoration: inherit;
+}
+.content ol li a:visited{
+  color: white;
+}
+
 .logout {
   position: absolute;
   top: 20%;

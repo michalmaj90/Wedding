@@ -9,8 +9,12 @@
     <p>Twój opis: {{ spouse.description }}</p>
     <p>Email: {{ spouse.email }}</p>
     <p>Telefon: {{ spouse.phone }}</p>
-    <a href="/spouse_edit_info/{{ user.id }}">Edytuj dane</a>
-    <a href="/spouse_delete/{{ user.id }}">Wyczyść dane</a><br><br>
+    <a href="/spouse_edit_info/{{ user.id }}">
+      <button type="button" name="button">Edytuj dane</button>
+    </a>
+    <a href="/spouse_delete/{{ user.id }}">
+      <button type="button" name="button">Wyczyść dane</button>
+    </a>
     {% else %}
     <h3>Brak danych do wyświetlenia!</h3>
     <a href="/spouse_add_info/{{ user.id }}">

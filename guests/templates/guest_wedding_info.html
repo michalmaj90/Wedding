@@ -6,12 +6,12 @@
     {% for info in wedding %}
     <p>Nazwa kościoła: {{ info.church_name }}</p>
     <p>Adres kościoła: {{ info.church_address }}</p>
-    <a href="{{ info.church_view }}">
+    <a target=_blank href="{{ info.church_view }}">
       <button type="button" name="button">Zobacz kościół</button>
     </a>
     <br><br><p>Nazwa sali: {{ info.premises_name }}</p>
     <p>Adres sali: {{ info.premises_address }}</p>
-    <a href="{{ info.premises_view }}">
+    <a target=_blank href="{{ info.premises_view }}">
       <button type="button" name="button">Zobacz salę</button>
     </a>
     {% endfor %}

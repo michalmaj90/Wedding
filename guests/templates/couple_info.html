@@ -10,7 +10,7 @@
         <p>{{ spouse.last_name }}</p>
         <p>{{ spouse.description }}</p>
         <p>{{ spouse.email }}</p>
-        <p>{{ spouse.phone }}</p>
+        <p>{{ spouse.phone }}</p><br>
         {% else %}
         <h4>Brak danych użytkownika {{ spouse.user.username }}</h4>
         <a href="spouse_add_info/{{ spouse.user.id }}">

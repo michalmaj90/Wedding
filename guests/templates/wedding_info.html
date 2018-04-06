@@ -1,24 +1,43 @@
 {% extends 'base.html' %}
 {% block content %}
-  <h3>{{ text }}</h3>
-  {% if infos %}
+  <div class="content">
+    <h3>{{ text }}</h3>
+    {% if infos %}
     {% for info in infos %}
     <h3>Informacje o kościele</h3>
     <p>Nazwa kościoła: {{ info.church_name }}</p>
     <p>Adres kościoła: {{ info.church_address }}</p>
-    <a target=_blank href="{{ info.church_view }}">Zobacz kościół</a></br><br>
+    <a target=_blank href="{{ info.church_view }}">
+      <button type="button" name="button">Zobacz kościół</button>
+    </a>
     <h3>Informacje o sali</h3>
     <p>Nazwa sali: {{ info.premises_name }}</p>
     <p>Adres sali: {{ info.premises_address }}</p>
-    <a target=_blank href="{{ info.premises_view }}">Zobacz salę</a>
-    <br><br><a href="/wedding_edit_info/{{ info.id }}">Edytuj wesele</a>
-    <a href="/wedding_delete/{{ info.id }}">Skasuj wesele</a><br><br>
+    <a target=_blank href="{{ info.premises_view }}">
+      <button type="button" name="button">Zobacz salę</button>
+    </a><br><br>
+    <a href="/wedding_edit_info/{{ info.id }}">
+      <button type="button" name="button">Edytuj wesele</button>
+    </a>
+    <a href="/wedding_delete/{{ info.id }}">
+      <button type="button" name="button">Wyczyść wesele</button>
+    </a>
     {% endfor %}
-  {% else %}
+    {% else %}
     <h3>Brak danych o weselu!</h3>
     <a href="/wedding_add_info">
       <button type="button" name="button">DODAJ DANE</button>
     </a>
-  {% endif %}
-  <p><a href="/couple_page">Wróć do strony głównej</a></p>
+    {% endif %}
+  </div>
+  <div class="mainPage">
+    <a href="/couple_page">
+      <button type="button" name="button">Wróć do strony głównej</button>
+    </a>
+  </div>
+  <div class="logout">
+    <a href="{% url 'couple-logout' %}">
+      <button type="button" name="button">Wyloguj się</button>
+    </a>
+  </div>
 {% endblock content%}

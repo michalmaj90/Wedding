@@ -1,12 +1,23 @@
 {% extends 'base.html' %}
 {% block content %}
-  {% if companion.first_name %}
+  <div class="content">
+    {% if companion.first_name %}
     <h3>Dane osoby towarzyszącej</h3>
     <p>Imię: {{ companion.first_name }}</p>
     <p>Nazwisko: {{ companion.last_name }}</p>
     <p>Jedzenie: {{ companion.food }}</p>
-  {% else %}
+    {% else %}
     <h3>Brak danych do wyświetlenia!</h3>
-  {% endif %}
-  <br><br><a href="/couple_page/">Wróć do strony głównej</a>
+    {% endif %}
+  </div>
+  <div class="mainPage">
+    <a href="/couple_page">
+      <button type="button" name="button">Wróć do strony głównej</button>
+    </a>
+  </div>
+  <div class="logout">
+    <a href="{% url 'couple-logout' %}">
+      <button type="button" name="button">Wyloguj się</button>
+    </a>
+  </div>
 {% endblock content %}
