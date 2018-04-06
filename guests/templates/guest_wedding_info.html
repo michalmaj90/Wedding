@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+{% block menu %}
+  <div class="contentMenu">
+    {% include "guest_menu.html"%}
+  </div>
+{% endblock menu %}
+
 {% block content %}
   <div class="content">
     {% if wedding %}
@@ -20,8 +26,8 @@
     {% endif %}
   </div>
   <div class="mainPage">
-    <a href="/guest_page/{{ user.id }}">
-      <button type="button" name="button">Wróć do strony głównej</button>
+    <a href="/guest_info/{{ user.id }}">
+      <button type="button" name="button">Wróć do poprzedniej strony</button>
     </a>
   </div>
   <div class="logout">

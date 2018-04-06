@@ -4,6 +4,7 @@ html {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  font-family: sans-serif;
 }
 
 .header {
@@ -72,13 +73,14 @@ html {
 
 .form form {
   text-align: center;
-  font-size: 20px;
+  font-size: 16px;
   color: white;
   border-radius: 10px;
+  height: 25px;
 }
 
 .form input{
-  height: 20px;
+  font-size: 16px;
   background-color: rgb(179, 255, 179, 0.9);
   border-radius: 10px;
   color: white;
@@ -86,13 +88,16 @@ html {
 
 .register{
   position: absolute;
-  left: 42%;
-  top: 70%;
+  left: 41%;
+  top: 65%;
   bottom: 50%;
 }
 
 .register button {
   position: absolute;
+  height: 25px;
+  width: 150px;
+  font-size: 16px;
   background-color: rgb(179, 255, 179, 0.9);
   border-radius: 10px;
   color: white;
@@ -106,10 +111,8 @@ html {
 .mainPage button {
   background-color: rgb(179, 255, 179, 0.8);
   border-radius: 10px;
-  border: none;
-  font-size: 16px;
+  font-size: 14px;
   color: white;
-  font-weight: bold;
 }
 
 .content {
@@ -125,9 +128,9 @@ html {
 }
 
 .content button {
-  /*position: absolute;*/
   background-color: rgb(179, 255, 179, 0.9);
   border-radius: 10px;
+  font-size: 14px;
   color: white;
 }
 
@@ -140,9 +143,22 @@ html {
 }
 
 .contentMenu {
-  height: 100px;
-  width: 100px;
-  background-color: red;
+  position: absolute;
+  top: 20%;
+  bottom: auto;
+  left: 0;
+  right: 0;
+  margin: auto;
+  font-size: 16px;
+  text-align: center;
+  color: white;
+}
+
+.contentMenu button {
+  background-color: rgb(179, 255, 179, 0.9);
+  border-radius: 10px;
+  font-size: 14px;
+  color: white;
 }
 
 .logout {
@@ -154,8 +170,6 @@ html {
 .logout button{
   background-color: rgb(179, 255, 179, 0.8);
   border-radius: 10px;
-  border: none;
-  font-size: 16px;
+  font-size: 14px;
   color: white;
-  font-weight: bold;
 }

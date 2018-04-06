@@ -1,9 +1,9 @@
 {% extends 'base.html' %}
-<!-- {% block menu %}
+{% block menu %}
   <div class="contentMenu">
-    {% include "menu.html"%}
+    {% include "guest_menu.html"%}
   </div>
-{% endblock menu %} -->
+{% endblock menu %}
 
 {% block content %}
 
@@ -15,9 +15,6 @@
     <p>Email: {{ guest.email }}</p>
     <p>Telefon: {{ guest.phone }}</p>
     <p>Opcja jedzenia: {{ guest.food }}</p>
-    <a href="/companion_info/{{ user.id }}">
-      <button type="button" name="button">Osoba towarzysząca</button>
-    </a>
     <a href="/guest_edit_info/{{ user.id }}">
       <button type="button" name="button">Edytuj dane</button>
     </a>
@@ -33,7 +30,7 @@
   </div>
   <div class="mainPage">
     <a href="/guest_page/{{ user.id }}">
-      <button type="button" name="button">Wróć do strony głównej</button>
+      <button type="button" name="button">Strona główna</button>
     </a>
   </div>
   <div class="logout">

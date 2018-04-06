@@ -1,4 +1,10 @@
 {% extends 'base.html' %}
+{% block menu %}
+  <div class="contentMenu">
+    {% include "couple_menu.html"%}
+  </div>
+{% endblock menu %}
+
 {% block content %}
   <div class="content">
     <h3>{{ text }}</h3>
