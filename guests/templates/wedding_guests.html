@@ -2,15 +2,22 @@
 {% block content %}
   {% if guests %}
     <div class="content">
+      <h3>Całkowita liczba Waszych gości to: {{ guests_number }}</h3>
       <ol>
         {% for guest in guests %}
           {% if guest.first_name %}
             <li>
+              {% if guest.accompanyingperson.first_name %}
                 <a href="/wedding_guest_info/{{ guest.user.id }}">
-                  {{ guest.first_name }} {{ guest.last_name }}
+                  {{ guest.first_name }} {{ guest.last_name }} + osoba towarzysząca
                 </a>
               {% else %}
-                <h4>Brak danych gościa</h4>
+              <a href="/wedding_guest_info/{{ guest.user.id }}">
+                {{ guest.first_name }} {{ guest.last_name }}
+              </a>
+              {% endif %}
+          {% else %}
+            <h4>Brak danych gościa</h4>
             </li>
           {% endif %}
         {% endfor %}

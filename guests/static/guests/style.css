@@ -139,6 +139,12 @@ html {
   color: white;
 }
 
+.contentMenu {
+  height: 100px;
+  width: 100px;
+  background-color: red;
+}
+
 .logout {
   position: absolute;
   top: 20%;

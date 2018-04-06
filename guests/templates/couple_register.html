@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="login">
+<div class="form">
   <h2>Rejestracja młodych</h2>
   <h3>{{ error }}</h3>
   <form action="" method="post">
     {% csrf_token %}
     {{ form|linebreaks }}
-    <input type="submit" value="Zarejestruj małżonka">
+    <input class="button" type="submit" value="Zarejestruj małżonka">
   </form>
 </div>
 <div class="mainPage">

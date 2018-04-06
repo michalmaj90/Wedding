@@ -303,8 +303,13 @@ class EditWeddingInfoView(View):
 class WeddingGuestsView(View):
     def get(self, request):
         guests = WeddingGuest.objects.all()
+        companions = AccompanyingPerson.objects.all()
+        empty_companions = AccompanyingPerson.objects.filter(first_name="")
+        guests_number = len(guests) + (len(companions)-len(empty_companions))
         ctx = {
             'guests': guests,
+            'companions': companions,
+            'guests_number': guests_number,
         }
         return render(request, 'wedding_guests.html', ctx)
 
