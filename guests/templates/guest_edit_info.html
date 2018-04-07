@@ -9,7 +9,7 @@
   <div class="form">
     <form action="" method="post">
       {% csrf_token %}
-      {{ form|linebreaks }}
+      {{ form.as_p }}
       <input type="submit" value="Zapisz zmiany">
     </form>
   </div>

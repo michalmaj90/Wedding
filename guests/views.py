@@ -47,6 +47,11 @@ class CoupleRegisterView(View):
                     login(request, user)
                     spouse = WeddingCouple.objects.create(user=user, first_name="", last_name="", description="", email="", phone=None)
                     return HttpResponseRedirect('/couple_page')
+        else:
+            ctx = {
+                'form': form,
+            }
+            return render(request, 'couple_register.html', ctx)
 
 class CoupleLoginView(View):
     def get(self, request):
@@ -135,6 +140,11 @@ class GuestRegisterView(View):
                     new_guest = WeddingGuest.objects.create(user=user, first_name="", last_name="", email="", phone=None, food=None)
                     AccompanyingPerson.objects.create(companion=new_guest, first_name="", last_name="", food="")
                     return HttpResponseRedirect('/guest_page/{}'.format(user.id))
+        else:
+            ctx = {
+                'form': form,
+            }
+            return render(request, 'guest_register.html', ctx)
 
 
 class CouplePageView(View):
@@ -182,6 +192,11 @@ class SpouseAddInfoView(View):
             spouse.phone = form.cleaned_data['phone']
             spouse.save()
             return HttpResponseRedirect("/spouse_info/{}".format(spouse_id))
+        else:
+            ctx = {
+                'form': form,
+            }
+            return render(request, 'spouse_add_info.html', ctx)
 
 
 class SpouseInfoView(View):
@@ -224,6 +239,11 @@ class SpouseEditInfoView(View):
                 'spouse': spouse,
             }
             return render(request, 'spouse_info.html', ctx)
+        else:
+            ctx = {
+                'form': form,
+            }
+            return render(request, 'spouse_edit_info.html', ctx)
 
 
 class SpouseDeleteView(View):
@@ -262,6 +282,7 @@ class AddWeddingInfoView(View):
                 'text': "Dodano informacje o weselu!",
             }
             return HttpResponseRedirect('/wedding_info')
+
 
 class WeddingInfoView(View):
     def get(self, request):
@@ -380,6 +401,11 @@ class GuestAddInfoView(View):
             guest.food = food
             guest.save()
             return HttpResponseRedirect('/guest_info/{}'.format(user.id))
+        else:
+            ctx = {
+                'form': form,
+            }
+            return render(request, 'guest_add_info.html', ctx)
 
 class GuestDeleteInfoView(View):
     def get(self, request, guest_id):
@@ -420,6 +446,12 @@ class GuestEditInfoView(View):
             guest.food = form.cleaned_data['food']
             guest.save()
             return HttpResponseRedirect('/guest_info/{}'.format(user.id))
+        else:
+            ctx = {
+                'form': form,
+            }
+            return render(request, 'guest_edit_info.html', ctx)
+
 
 class CompanionInfoView(View):
     def get(self, request, companion_id):

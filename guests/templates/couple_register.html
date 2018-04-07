@@ -5,7 +5,7 @@
   <h3>{{ error }}</h3>
   <form action="" method="post">
     {% csrf_token %}
-    {{ form|linebreaks }}
+    {{ form.as_p }}
     <input class="button" type="submit" value="Zarejestruj małżonka">
   </form>
 </div>

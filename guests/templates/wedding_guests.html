@@ -6,8 +6,8 @@
 {% endblock menu %}
 
 {% block content %}
+<div class="content">
   {% if guests %}
-    <div class="content">
       <h3>Całkowita liczba Waszych gości to: {{ guests_number }}</h3>
       <ol>
         {% for guest in guests %}
