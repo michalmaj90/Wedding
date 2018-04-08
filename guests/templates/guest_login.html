@@ -7,11 +7,9 @@
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" class="loginButton" value="Zaloguj się">
-    <div class="register">
-      <a href="/guest_register">
-        <button type="button" name="button">Zarejestruj się</button>
-      </a>
-    </div>
+    <p><a href="/guest_register">
+      <button type="button" name="button">Zarejestruj się</button>
+    </a></p>
   </form>
 </div>
 <div class="mainPage">
