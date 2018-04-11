@@ -1,4 +1,4 @@
-## Wedding Application
+# Wedding Application
 
 **Version 1.0.0**
 
