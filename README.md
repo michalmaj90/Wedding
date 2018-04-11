@@ -1,7 +1,7 @@
-# Wedding Application
+## Wedding Application
 
 **Version 1.0.0**
-##
+
 *This is my final project, finishing my participation in "Back-end: Python" course in CodersLab School of programming.*
 ---
 
