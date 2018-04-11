@@ -12,21 +12,21 @@ I created this app, due to my wedding celebration which is taking place this yea
 Before you run the app you should:
 - run or create your virtual environment,
 - install Python on your computer,
-- install django by using "pip install Django" command in your terminal,
+- install django by using `pip install Django` command in your terminal,
 - go to the destination, where you want this app to run
-- clone this repo by copying its URL and putting it into a "git clone" command
+- clone this repo by copying its URL and putting it into a `git clone` command
 
 ## How to run the app
 After you cloned the repo to the local file:
 - create database called "wedding" by typing: 
-"'''shell CREATE DATABASE wedding CHARACTER SET utf8 COLLATE utf8_general_ci;"
+`CREATE DATABASE wedding CHARACTER SET utf8 COLLATE utf8_general_ci;`
 - get into the project folder in your terminal
 - install necessary requirements by typing "pip install -r requirements.txt" in your terminal
-- type `bash python manage.py migrate` in your terminal
-- type "python manage.py makemigrations" to make sure nothing else left to migrate
-- if any migrations were done type: "python manage.py migrate" again , but if "no changes detected" type: "python manage.py runserver"
-- get into the link, that appeared and add "/hello" in the end
-- if your server is busy type: "sudo fuser -k localhost_number/tcp"
+- type `python manage.py migrate` in your terminal
+- type `python manage.py makemigrations` to make sure nothing else left to migrate
+- if any migrations were done type: `python manage.py migrate` again , but if "no changes detected" type: `python manage.py runserver`
+- get into the link, that appeared and add `/hello` in the end
+- if your server is busy type: `sudo fuser -k localhost_number/tcp` in your terminal
 
 ## Helpful links
 - installing python: https://www.python.org/downloads/
