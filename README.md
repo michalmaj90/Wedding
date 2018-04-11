@@ -22,7 +22,7 @@ After you cloned the repo to the local file:
 "'''shell CREATE DATABASE wedding CHARACTER SET utf8 COLLATE utf8_general_ci;"
 - get into the project folder in your terminal
 - install necessary requirements by typing "pip install -r requirements.txt" in your terminal
-- type ``` shell python manage.py migrate``` in your terminal
+- type `bash python manage.py migrate` in your terminal
 - type "python manage.py makemigrations" to make sure nothing else left to migrate
 - if any migrations were done type: "python manage.py migrate" again , but if "no changes detected" type: "python manage.py runserver"
 - get into the link, that appeared and add "/hello" in the end
