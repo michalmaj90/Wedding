@@ -8,6 +8,9 @@
 ## Why this project?
 I created this app, due to my wedding celebration which is taking place this year. This version should help us to collect infos about our guests and enable our guests to know everything about our celebration.
 
+## What is the final concept?
+I would like to develop the project, so that it could be fully used by future spouses to plan and organise the whole wedding celebration.
+
 ## Getting started
 Before you run the app you should:
 - run or create your virtual environment,
