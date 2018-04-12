@@ -37,6 +37,11 @@ After you cloned the repo to the local file:
 - virtual environment: https://docs.python.org/3/library/venv.html
 - requirements: https://stackoverflow.com/questions/7225900/how-to-pip-install-packages-according-to-requirements-txt-from-a-local-directory
 
+## Still to do
+- sending emails to registered people
+- improving couple's registration and editting form
+- improving CSS
+
 ## Copyright
 (c) Michał Maj
 
