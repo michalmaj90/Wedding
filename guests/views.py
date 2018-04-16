@@ -121,6 +121,7 @@ class GuestRegisterView(View):
             user = User.objects.filter(username=username)
             password1 = form.cleaned_data['password1']
             password2 = form.cleaned_data['password2']
+            email = form.cleaned_data['email']
             if user:
                 ctx = {
                     'form': form,
@@ -135,7 +136,7 @@ class GuestRegisterView(View):
                     }
                     return render(request, 'guest_register.html', ctx)
                 else:
-                    user = User.objects.create_user(username=username, password=password1)
+                    user = User.objects.create_user(username=username, password=password1, email=email)
                     login(request, user)
                     new_guest = WeddingGuest.objects.create(user=user, first_name="", last_name="", email="", phone=None, food=None)
                     AccompanyingPerson.objects.create(companion=new_guest, first_name="", last_name="", food="")
