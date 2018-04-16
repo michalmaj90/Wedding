@@ -21,6 +21,7 @@ class GuestRegisterForm(forms.Form):
     username = forms.CharField()
     password1 = forms.CharField(widget=forms.PasswordInput)
     password2 = forms.CharField(widget=forms.PasswordInput)
+    email = forms.EmailField()
 
 class GuestAddInfoForm(forms.Form):
     first_name = forms.CharField()
