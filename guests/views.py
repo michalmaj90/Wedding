@@ -1,8 +1,11 @@
 from django.shortcuts import render
 from django.views import View
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
+from django.core.mail import send_mail
+from django.conf import settings
 from guests.models import WeddingCouple, WeddingGuest, AccompanyingPerson, WeddingInfo, FOOD
 from guests.forms import CoupleLoginForm, GuestLoginForm, GuestRegisterForm, GuestAddInfoForm, SpouseAddInfoForm, SpouseEditInfoForm, AddWeddingInfoForm, EditWeddingInfoForm, GuestEditInfoForm, CoupleRegisterForm, CompanionAddInfoForm, CompanionEditInfoForm
 
@@ -140,6 +143,7 @@ class GuestRegisterView(View):
                     login(request, user)
                     new_guest = WeddingGuest.objects.create(user=user, first_name="", last_name="", email="", phone=None, food=None)
                     AccompanyingPerson.objects.create(companion=new_guest, first_name="", last_name="", food="")
+                    #send_mail(subject, message, from_email, to_email, fail_silently=True)
                     return HttpResponseRedirect('/guest_page/{}'.format(user.id))
         else:
             ctx = {
