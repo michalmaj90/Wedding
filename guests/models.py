@@ -36,3 +36,6 @@ class WeddingInfo(models.Model):
     premises_name = models.CharField(max_length=200, blank=True)
     premises_address = models.CharField(max_length=200, blank=True)
     premises_view = models.TextField(max_length=300, blank=True)
+
+class ToDoList(models.Model):
+    task = models.CharField(max_length=200)

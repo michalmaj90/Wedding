@@ -147,7 +147,7 @@ class GuestRegisterView(View):
                     subject = "Thanks for registering"
                     message = "Thank you for your registration!!"
                     from_email = settings.EMAIL_HOST_USER
-                    to_list = [user.email]
+                    to_list = [email]
                     send_mail(subject,message,from_email,to_list, fail_silently=True)
                     return HttpResponseRedirect('/guest_page/{}'.format(user.id))
         else:
