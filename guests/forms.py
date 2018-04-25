@@ -76,3 +76,6 @@ class CompanionEditInfoForm(forms.Form):
     first_name = forms.CharField()
     last_name = forms.CharField()
     food = forms.CharField(widget=forms.Select(choices=FOOD))
+
+class ToDoForm(forms.Form):
+    task = forms.CharField()

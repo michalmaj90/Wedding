@@ -7,7 +7,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.core.mail import send_mail
 from django.conf import settings
 from guests.models import WeddingCouple, WeddingGuest, AccompanyingPerson, WeddingInfo, FOOD
-from guests.forms import CoupleLoginForm, GuestLoginForm, GuestRegisterForm, GuestAddInfoForm, SpouseAddInfoForm, SpouseEditInfoForm, AddWeddingInfoForm, EditWeddingInfoForm, GuestEditInfoForm, CoupleRegisterForm, CompanionAddInfoForm, CompanionEditInfoForm
+from guests.forms import CoupleLoginForm, GuestLoginForm, GuestRegisterForm, GuestAddInfoForm, SpouseAddInfoForm, SpouseEditInfoForm, AddWeddingInfoForm, EditWeddingInfoForm, GuestEditInfoForm, CoupleRegisterForm, CompanionAddInfoForm, CompanionEditInfoForm, ToDoForm
 
 # Create your views here.
 
@@ -361,6 +361,14 @@ class WeddingDeleteView(View):
         wedding = WeddingInfo.objects.get(pk=wedding_id)
         wedding.delete()
         return HttpResponseRedirect('/wedding_info')
+
+class ToDoAddView(View):
+    def get(self, request):
+        form = ToDoForm()
+        ctx = {
+            'form': form,
+        }
+        return render(request, 'to_do_add.html', ctx)
 
 
 class GuestPageView(View):

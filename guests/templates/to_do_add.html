@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block menu %}
+  <div class="contentMenu">
+    {% include "couple_menu.html"%}
+  </div>
+{% endblock menu %}
+{% block content %}
+  <form class="form" action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input class='button' type="submit" value="Dodaj zadanie">
+  </form>
+  <div class="mainPage">
+    <a href="/couple_page">
+      <button type="button" name="button">Wróć do strony głównej</button>
+    </a>
+  </div>
+  <div class="logout">
+    <a href="{% url 'couple-logout' %}">
+      <button type="button" name="button">Wyloguj się</button>
+    </a>
+  </div>
+{% endblock content %}
