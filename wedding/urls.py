@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from guests.views import HelloView, CoupleLoginView, GuestLoginView, GuestRegisterView, CouplePageView, CoupleLogoutView, GuestLogoutView, SpouseAddInfoView, SpouseInfoView, SpouseEditInfoView, SpouseDeleteView, AddWeddingInfoView, WeddingInfoView, EditWeddingInfoView, WeddingDeleteView, GuestPageView, GuestInfoView, GuestAddInfoView, GuestDeleteInfoView, GuestEditInfoView, CompanionInfoView, CompanionAddInfoView, CompanionEditInfoView, CompanionDeleteInfoView, WeddingCompanionInfoView, GuestCoupleInfoView, GuestWeddingInfoView, CoupleRegisterView, CoupleInfoView, WeddingGuestsView, WeddingGuestInfoView, ToDoAddView
+from guests.views import HelloView, CoupleLoginView, GuestLoginView, GuestRegisterView, CouplePageView, CoupleLogoutView, GuestLogoutView, SpouseAddInfoView, SpouseInfoView, SpouseEditInfoView, SpouseDeleteView, AddWeddingInfoView, WeddingInfoView, EditWeddingInfoView, WeddingDeleteView, GuestPageView, GuestInfoView, GuestAddInfoView, GuestDeleteInfoView, GuestEditInfoView, CompanionInfoView, CompanionAddInfoView, CompanionEditInfoView, CompanionDeleteInfoView, WeddingCompanionInfoView, GuestCoupleInfoView, GuestWeddingInfoView, CoupleRegisterView, CoupleInfoView, WeddingGuestsView, WeddingGuestInfoView, ToDoView, ToDoAddView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^wedding_guests', WeddingGuestsView.as_view(), name='wedding-guests'),
     url(r'^wedding_guest_info/(?P<guest_id>(\d)+)$', WeddingGuestInfoView.as_view(), name='wedding-guest-info'),
     url(r'^wedding_delete/(?P<wedding_id>(\d)+)$', WeddingDeleteView.as_view(), name='wedding-delete'),
+    url(r'^to_do', ToDoView.as_view(), name='to-do'),
     url(r'^to_do_add', ToDoAddView.as_view(), name='to-do-add'),
     url(r'^guest_page/(?P<guest_id>(\d)+)$', GuestPageView.as_view(), name='guest-page'),
     url(r'^guest_info/(?P<guest_id>(\d)+)$', GuestInfoView.as_view(), name='guest-info'),
