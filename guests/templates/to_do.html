@@ -1,1 +1,24 @@
 {% extends 'base.html' %}
+{% block menu %}
+  <div class="contentMenu">
+    {% include "couple_menu.html" %}
+  </div>
+{% endblock menu %}
+{% block content %}
+
+  <div class="content">
+    {% if list %}
+      <h3>Zadania do wykonania</h3>
+      {% for thing in list %}
+      <p>{{ thing }}</p>
+      {% endfor %}
+    {% else %}
+      <h3>Brak zadań do wykonania</h3>
+      <a href="{% url 'to-do-add' %}">
+        <button type="button" name="button">Dodaj zadanie</button>
+      </a>
+    {% endif %}
+  </div>
+
+
+{% endblock content %}
