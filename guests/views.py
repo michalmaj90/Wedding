@@ -377,6 +377,16 @@ class ToDoAddView(View):
             'form': form,
         }
         return render(request, 'to_do_add.html', ctx)
+    def post(self, request):
+        form = ToDoForm(request.POST)
+        if form.is_valid():
+            ToDoList.objects.create(task=form.cleaned_data["task"])
+            return HttpResponseRedirect('/to_do')
+        else:
+            ctx = {
+             'form': form,
+            }
+            return render(request, 'to_do_add.html', ctx)
 
 
 class GuestPageView(View):
