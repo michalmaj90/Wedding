@@ -10,7 +10,11 @@
     {% if list %}
       <h3>Zadania do wykonania</h3>
       {% for thing in list %}
-      <p>{{ thing.task }}</p>
+      <p>{{ thing.task }}
+        <a href="/to_do_delete">
+          <button type="button" name="button">Usuń</button>
+        </a>
+      </p>
       {% endfor %}
       <a href="{% url 'to-do-add' %}">
         <button type="button" name="button">Dodaj zadanie</button>
