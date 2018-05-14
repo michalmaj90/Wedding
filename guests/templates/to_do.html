@@ -11,7 +11,7 @@
       <h3>Zadania do wykonania</h3>
       {% for thing in list %}
       <p>{{ thing.task }}
-        <a href="/to_do_delete">
+        <a href="/to_do_delete/{{ thing.id }}">
           <button type="button" name="button">Usuń</button>
         </a>
       </p>
