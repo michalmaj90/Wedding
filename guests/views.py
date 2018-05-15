@@ -388,6 +388,11 @@ class ToDoAddView(View):
             }
             return render(request, 'to_do_add.html', ctx)
 
+class ToDoDeleteView(View):
+    def get(self, request, id):
+        task = ToDoList.objects.get(pk=id)
+        task.delete()
+        return HttpResponseRedirect('/to_do')
 
 class GuestPageView(View):
     def get(self, request, guest_id):
